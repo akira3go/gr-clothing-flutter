@@ -1,0 +1,87 @@
+name: gr_clothing_flutter
+description: 激ロックFlutterアプリケーション iOS, Android対応
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_riverpod: ^1.0.3
+  cached_network_image: ^3.2.0
+  carousel_slider: ^4.1.1
+  webview_flutter: ^3.0.2
+  json_serializable: ^6.1.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.4
+  freezed_annotation: ^2.0.1
+  build_runner: ^2.1.10
+  flutter_gen_runner: ^4.1.6
+  freezed: ^2.0.2
+  enum_to_string: ^2.0.1
+
+
+flutter:
+  uses-material-design: true
+
+#  assets:
+#    - assets/images/
+
+  fonts:
+    - family: Bevan
+      fonts:
+        - asset: assets/fonts/bevan_regular.ttf
+        - asset: assets/fonts/bevan_italic.ttf
+          style: italic
+
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/oswald_extra_light.ttf
+          weight: 100
+        - asset: assets/fonts/oswald_light.ttf
+          weight: 200
+        - asset: assets/fonts/oswald_regular.ttf
+          weight: 300
+        - asset: assets/fonts/oswald_medium.ttf
+          weight: 400
+        - asset: assets/fonts/oswald_semi_bold.ttf
+          weight: 500
+        - asset: assets/fonts/oswald_bold.ttf
+          weight: 600
+
+    - family: Hiragino
+      fonts:
+        - asset: assets/fonts/hiragino_kaku_gothic_1.ttc
+          weight: 100
+        - asset: assets/fonts/hiragino_kaku_gothic_2.ttc
+          weight: 200
+        - asset: assets/fonts/hiragino_kaku_gothic_3.ttc
+          weight: 300
+        - asset: assets/fonts/hiragino_kaku_gothic_4.ttc
+          weight: 400
+        - asset: assets/fonts/hiragino_kaku_gothic_5.ttc
+          weight: 500
+        - asset: assets/fonts/hiragino_kaku_gothic_6.ttc
+          weight: 600
+        - asset: assets/fonts/hiragino_kaku_gothic_7.ttc
+          weight: 700
+        - asset: assets/fonts/hiragino_kaku_gothic_8.ttc
+          weight: 800
+        - asset: assets/fonts/hiragino_kaku_gothic_9.ttc
+          weight: 900
+
+flutter_gen:
+  colors:
+    inputs:
+      - assets/colors.xml
+
+
+

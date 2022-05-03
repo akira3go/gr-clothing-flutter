@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="deepPink">#C01148</color>
+    <color name="japanese">#E5336E</color>
+    <color name="overseas">#22AE95</color>
+    <color name="lightGray">#999999</color>
+    <color name="gray">#333333</color>
+    <color name="backgroundLightGray">#F5F5F5</color>
+    <color name="peoples">#FF8A65</color>
+</resources>
