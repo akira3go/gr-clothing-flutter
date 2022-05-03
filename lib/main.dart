@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
@@ -30,9 +31,21 @@ class GRClothingApp extends StatelessWidget {
           padding: EdgeInsets.zero
         ),
       ),
-      home: const MainTabPage(),
+      home: _homeWidget(),
       // hidden the debug label.
       debugShowCheckedModeBanner: false,
     );
+  }
+
+  Widget _homeWidget() {
+    if (kDebugMode) {
+      return const Banner(
+        message: "GekiClothing",
+        location: BannerLocation.topStart,
+        child: MainTabPage(),
+      );
+    } else {
+      return const MainTabPage();
+    }
   }
 }
