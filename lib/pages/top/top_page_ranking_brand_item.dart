@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gr_clothing_flutter/model/top_news/clothing_product.dart';
+import 'package:gr_clothing_flutter/model/news/clothing_product.dart';
 import 'package:gr_clothing_flutter/utils/wrapper/gr_network_image.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 
@@ -61,9 +61,15 @@ class TopPageRankingBrandItem extends StatelessWidget {
           ],
         ),
         Container(
-          padding: const EdgeInsets.only(top: 5, bottom: 20),
+          padding: const EdgeInsets.only(top: 5),
+          height: 50,
           decoration: const BoxDecoration(
-            border: Border(right: BorderSide(color: ColorName.backgroundLightGray, width: 1,),),
+            border: Border(
+              right: BorderSide(
+                color: ColorName.backgroundLightGray,
+                width: 1,
+              ),
+            ),
           ),
           alignment: Alignment.topCenter,
           child: Text(

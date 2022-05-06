@@ -25,8 +25,9 @@ mixin _$ClothingProduct {
   num? get salesPrice => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
   String get part => throw _privateConstructorUsedError;
-  String? get label => throw _privateConstructorUsedError;
-  int? get labelType => throw _privateConstructorUsedError;
+  ProductSize? get leftSize => throw _privateConstructorUsedError;
+  double? get leftShoeSize => throw _privateConstructorUsedError;
+  int? get leftCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,8 +46,9 @@ abstract class $ClothingProductCopyWith<$Res> {
       num? salesPrice,
       String brand,
       String part,
-      String? label,
-      int? labelType});
+      ProductSize? leftSize,
+      double? leftShoeSize,
+      int? leftCount});
 }
 
 /// @nodoc
@@ -65,8 +67,9 @@ class _$ClothingProductCopyWithImpl<$Res>
     Object? salesPrice = freezed,
     Object? brand = freezed,
     Object? part = freezed,
-    Object? label = freezed,
-    Object? labelType = freezed,
+    Object? leftSize = freezed,
+    Object? leftShoeSize = freezed,
+    Object? leftCount = freezed,
   }) {
     return _then(_value.copyWith(
       image: image == freezed
@@ -89,13 +92,17 @@ class _$ClothingProductCopyWithImpl<$Res>
           ? _value.part
           : part // ignore: cast_nullable_to_non_nullable
               as String,
-      label: label == freezed
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String?,
-      labelType: labelType == freezed
-          ? _value.labelType
-          : labelType // ignore: cast_nullable_to_non_nullable
+      leftSize: leftSize == freezed
+          ? _value.leftSize
+          : leftSize // ignore: cast_nullable_to_non_nullable
+              as ProductSize?,
+      leftShoeSize: leftShoeSize == freezed
+          ? _value.leftShoeSize
+          : leftShoeSize // ignore: cast_nullable_to_non_nullable
+              as double?,
+      leftCount: leftCount == freezed
+          ? _value.leftCount
+          : leftCount // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -114,8 +121,9 @@ abstract class _$ClothingProductCopyWith<$Res>
       num? salesPrice,
       String brand,
       String part,
-      String? label,
-      int? labelType});
+      ProductSize? leftSize,
+      double? leftShoeSize,
+      int? leftCount});
 }
 
 /// @nodoc
@@ -136,8 +144,9 @@ class __$ClothingProductCopyWithImpl<$Res>
     Object? salesPrice = freezed,
     Object? brand = freezed,
     Object? part = freezed,
-    Object? label = freezed,
-    Object? labelType = freezed,
+    Object? leftSize = freezed,
+    Object? leftShoeSize = freezed,
+    Object? leftCount = freezed,
   }) {
     return _then(_ClothingProduct(
       image: image == freezed
@@ -160,13 +169,17 @@ class __$ClothingProductCopyWithImpl<$Res>
           ? _value.part
           : part // ignore: cast_nullable_to_non_nullable
               as String,
-      label: label == freezed
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String?,
-      labelType: labelType == freezed
-          ? _value.labelType
-          : labelType // ignore: cast_nullable_to_non_nullable
+      leftSize: leftSize == freezed
+          ? _value.leftSize
+          : leftSize // ignore: cast_nullable_to_non_nullable
+              as ProductSize?,
+      leftShoeSize: leftShoeSize == freezed
+          ? _value.leftShoeSize
+          : leftShoeSize // ignore: cast_nullable_to_non_nullable
+              as double?,
+      leftCount: leftCount == freezed
+          ? _value.leftCount
+          : leftCount // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -181,8 +194,9 @@ class _$_ClothingProduct implements _ClothingProduct {
       this.salesPrice,
       required this.brand,
       required this.part,
-      this.label,
-      this.labelType});
+      this.leftSize,
+      this.leftShoeSize,
+      this.leftCount});
 
   factory _$_ClothingProduct.fromJson(Map<String, dynamic> json) =>
       _$$_ClothingProductFromJson(json);
@@ -198,13 +212,15 @@ class _$_ClothingProduct implements _ClothingProduct {
   @override
   final String part;
   @override
-  final String? label;
+  final ProductSize? leftSize;
   @override
-  final int? labelType;
+  final double? leftShoeSize;
+  @override
+  final int? leftCount;
 
   @override
   String toString() {
-    return 'ClothingProduct(image: $image, price: $price, salesPrice: $salesPrice, brand: $brand, part: $part, label: $label, labelType: $labelType)';
+    return 'ClothingProduct(image: $image, price: $price, salesPrice: $salesPrice, brand: $brand, part: $part, leftSize: $leftSize, leftShoeSize: $leftShoeSize, leftCount: $leftCount)';
   }
 
   @override
@@ -218,8 +234,10 @@ class _$_ClothingProduct implements _ClothingProduct {
                 .equals(other.salesPrice, salesPrice) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
             const DeepCollectionEquality().equals(other.part, part) &&
-            const DeepCollectionEquality().equals(other.label, label) &&
-            const DeepCollectionEquality().equals(other.labelType, labelType));
+            const DeepCollectionEquality().equals(other.leftSize, leftSize) &&
+            const DeepCollectionEquality()
+                .equals(other.leftShoeSize, leftShoeSize) &&
+            const DeepCollectionEquality().equals(other.leftCount, leftCount));
   }
 
   @JsonKey(ignore: true)
@@ -231,8 +249,9 @@ class _$_ClothingProduct implements _ClothingProduct {
       const DeepCollectionEquality().hash(salesPrice),
       const DeepCollectionEquality().hash(brand),
       const DeepCollectionEquality().hash(part),
-      const DeepCollectionEquality().hash(label),
-      const DeepCollectionEquality().hash(labelType));
+      const DeepCollectionEquality().hash(leftSize),
+      const DeepCollectionEquality().hash(leftShoeSize),
+      const DeepCollectionEquality().hash(leftCount));
 
   @JsonKey(ignore: true)
   @override
@@ -252,8 +271,9 @@ abstract class _ClothingProduct implements ClothingProduct {
       final num? salesPrice,
       required final String brand,
       required final String part,
-      final String? label,
-      final int? labelType}) = _$_ClothingProduct;
+      final ProductSize? leftSize,
+      final double? leftShoeSize,
+      final int? leftCount}) = _$_ClothingProduct;
 
   factory _ClothingProduct.fromJson(Map<String, dynamic> json) =
       _$_ClothingProduct.fromJson;
@@ -269,9 +289,11 @@ abstract class _ClothingProduct implements ClothingProduct {
   @override
   String get part => throw _privateConstructorUsedError;
   @override
-  String? get label => throw _privateConstructorUsedError;
+  ProductSize? get leftSize => throw _privateConstructorUsedError;
   @override
-  int? get labelType => throw _privateConstructorUsedError;
+  double? get leftShoeSize => throw _privateConstructorUsedError;
+  @override
+  int? get leftCount => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$ClothingProductCopyWith<_ClothingProduct> get copyWith =>

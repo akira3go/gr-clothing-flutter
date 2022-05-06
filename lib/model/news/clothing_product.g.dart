@@ -13,8 +13,9 @@ _$_ClothingProduct _$$_ClothingProductFromJson(Map<String, dynamic> json) =>
       salesPrice: json['salesPrice'] as num?,
       brand: json['brand'] as String,
       part: json['part'] as String,
-      label: json['label'] as String?,
-      labelType: json['labelType'] as int?,
+      leftSize: $enumDecodeNullable(_$ProductSizeEnumMap, json['leftSize']),
+      leftShoeSize: (json['leftShoeSize'] as num?)?.toDouble(),
+      leftCount: json['leftCount'] as int?,
     );
 
 Map<String, dynamic> _$$_ClothingProductToJson(_$_ClothingProduct instance) =>
@@ -24,6 +25,17 @@ Map<String, dynamic> _$$_ClothingProductToJson(_$_ClothingProduct instance) =>
       'salesPrice': instance.salesPrice,
       'brand': instance.brand,
       'part': instance.part,
-      'label': instance.label,
-      'labelType': instance.labelType,
+      'leftSize': _$ProductSizeEnumMap[instance.leftSize],
+      'leftShoeSize': instance.leftShoeSize,
+      'leftCount': instance.leftCount,
     };
+
+const _$ProductSizeEnumMap = {
+  ProductSize.free: 'free',
+  ProductSize.extraSmall: 'extraSmall',
+  ProductSize.small: 'small',
+  ProductSize.medium: 'medium',
+  ProductSize.large: 'large',
+  ProductSize.extraLarge: 'extraLarge',
+  ProductSize.doubleExtraLarge: 'doubleExtraLarge',
+};

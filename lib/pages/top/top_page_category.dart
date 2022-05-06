@@ -55,3 +55,40 @@ extension TopPageCategoryExtension on TopPageCategory {
     }
   }
 }
+
+enum ProductListTabType {
+  normal,
+  reserve,
+  sale,
+}
+
+extension ProductListTabTypeExtension on ProductListTabType {
+  String get title {
+    switch (this) {
+      case ProductListTabType.normal:
+        return "通常商品";
+      case ProductListTabType.reserve:
+        return "予約商品";
+      case ProductListTabType.sale:
+        return "SALE";
+    }
+  }
+
+  Color get activeColor {
+    switch (this) {
+      case ProductListTabType.sale:
+        return Colors.red;
+      default:
+        return ColorName.skyBlue;
+    }
+  }
+
+  Color get inactiveColor {
+    switch (this) {
+      case ProductListTabType.sale:
+        return ColorName.saleTabInactive;
+      default:
+        return ColorName.rankingSecond;
+    }
+  }
+}

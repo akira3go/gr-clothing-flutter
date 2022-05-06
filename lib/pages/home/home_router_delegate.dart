@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gr_clothing_flutter/gen/colors.gen.dart';
-import 'package:gr_clothing_flutter/pages/favorite/favorite_page.dart';
 import 'package:gr_clothing_flutter/pages/page_name.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page.dart';
-import 'package:gr_clothing_flutter/pages/webview/webview_page.dart';
 
 final GlobalKey<NavigatorState> _nestedNavigatorKey =
     GlobalKey<NavigatorState>();
@@ -20,30 +17,13 @@ class HomeRouterDelegate extends RouterDelegate<void>
 
   @override
   Widget build(BuildContext context) {
-    final detailPageUrl = ref.watch(detailPageLinkUrlProvider);
-
     return Navigator(
       key: _nestedNavigatorKey,
       pages: [
-        const MaterialPage(
+        MaterialPage(
           arguments: PageName.topPage,
           child: TopPage(),
         ),
-        if (ref.watch(showFavoritePageProvider))
-          MaterialPage(
-            arguments: PageName.favoritePage,
-            child: Scaffold(
-              appBar: AppBar(
-                foregroundColor: ColorName.peoples,
-              ),
-              body: const FavoritePage(),
-            ),
-          ),
-        if (detailPageUrl.isNotEmpty)
-          MaterialPage(
-            arguments: PageName.detailPage,
-            child: WebviewPage(initialUrl: detailPageUrl),
-          )
       ],
       onPopPage: (route, result) {
         if (!route.didPop(result)) {
@@ -51,12 +31,6 @@ class HomeRouterDelegate extends RouterDelegate<void>
         }
         final pageName = route.settings.arguments as PageName;
         switch (pageName) {
-          case PageName.favoritePage:
-            ref.read(showFavoritePageProvider.notifier).state = false;
-            break;
-          case PageName.detailPage:
-            ref.read(detailPageLinkUrlProvider.notifier).state = "";
-            break;
           default:
             break;
         }
@@ -69,7 +43,3 @@ class HomeRouterDelegate extends RouterDelegate<void>
   Future<void> setNewRoutePath(void configuration) async {}
 }
 
-final showFavoritePageProvider =
-    StateProvider.autoDispose<bool>((ref) => false);
-
-final detailPageLinkUrlProvider = StateProvider<String>((ref) => "");

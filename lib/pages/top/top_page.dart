@@ -3,15 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/assets.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:gr_clothing_flutter/pages/top/clothing_product_list_item.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page_category.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page_ranking_brand_item.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page_ranking_item.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page_view_model.dart';
 import 'package:gr_clothing_flutter/utils/widget/gradation_border.dart';
 import 'package:gr_clothing_flutter/utils/wrapper/gr_network_image.dart';
+import 'package:gr_clothing_flutter/model/news/clothing_product.dart';
 
 class TopPage extends ConsumerWidget {
-  const TopPage({Key? key}) : super(key: key);
+  TopPage({Key? key}) : super(key: key);
+
+  final productListTabType =
+      StateProvider.autoDispose<ProductListTabType>((ref) {
+    return ProductListTabType.normal;
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -201,6 +208,7 @@ class TopPage extends ConsumerWidget {
                       _latestNewsWidget(),
                       _specialFeatureWidget(),
                       _rankingListView(state.rankingItems),
+                      _productListWidget(context, ref),
                     ],
                   ),
                 ),
@@ -468,5 +476,104 @@ class TopPage extends ConsumerWidget {
         );
       },
     );
+  }
+
+  // 商品一覧
+  Widget _productListWidget(BuildContext context, WidgetRef ref) {
+    final tabWidth = MediaQuery.of(context).size.width * 0.287;
+    final selectedTab = ref.watch(productListTabType);
+    final state = ref.watch(newsViewModelProvider);
+    const normalTab = ProductListTabType.normal;
+    const reserveTab = ProductListTabType.reserve;
+    const saleTab = ProductListTabType.sale;
+    return Column(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: ColorName.skyBlue, width: 2),
+            ),
+          ),
+          height: 31,
+          margin: const EdgeInsets.only(top: 10),
+          child: Row(
+            children: [
+              const Spacer(flex: 2),
+              _productListTab(ref, tabWidth, selectedTab, normalTab),
+              const Spacer(flex: 1),
+              _productListTab(ref, tabWidth, selectedTab, reserveTab),
+              const Spacer(flex: 1),
+              _productListTab(ref, tabWidth, selectedTab, saleTab),
+              const Spacer(flex: 2),
+            ],
+          ),
+        ),
+        Container(
+          decoration: const BoxDecoration(
+            border: Border(
+              top: BorderSide(color: ColorName.backgroundLightGray),
+              right: BorderSide(color: ColorName.backgroundLightGray),
+            ),
+          ),
+          margin: const EdgeInsets.only(top: 10),
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 0.48,
+              crossAxisCount: 3,
+            ),
+            itemCount: _clothingProductList(selectedTab, state).length,
+            itemBuilder: (context, index) {
+              return Container(
+                decoration: const BoxDecoration(
+                  border: Border(
+                    left: BorderSide(color: ColorName.backgroundLightGray),
+                    bottom: BorderSide(color: ColorName.backgroundLightGray),
+                  ),
+                ),
+                alignment: Alignment.topCenter,
+                child: ClothingProductListItem(
+                  clothingProduct:
+                      _clothingProductList(selectedTab, state)[index],
+                  isReserve: selectedTab == ProductListTabType.reserve,
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _productListTab(WidgetRef ref, double width,
+      ProductListTabType selectedTab, ProductListTabType tabType) {
+    return GestureDetector(
+      onTap: () => ref.read(productListTabType.notifier).state = tabType,
+      child: Container(
+        width: width,
+        color: selectedTab == tabType
+            ? tabType.activeColor
+            : tabType.inactiveColor,
+        alignment: Alignment.center,
+        child: Text(
+          tabType.title,
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  // 商品一覧
+  List<ClothingProduct> _clothingProductList(
+      ProductListTabType tabType, NewsState state) {
+    switch (tabType) {
+      case ProductListTabType.normal:
+        return state.normalClothingProductList;
+      case ProductListTabType.reserve:
+        return state.reserveClothingProductList;
+      case ProductListTabType.sale:
+        return state.saleClothingProductList;
+    }
   }
 }

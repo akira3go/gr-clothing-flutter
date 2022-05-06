@@ -47,6 +47,9 @@ class ColorName {
   /// Color: #C26019
   static const Color rankingThird = Color(0xFFC26019);
 
+  /// Color: #B75959
+  static const Color saleTabInactive = Color(0xFFB75959);
+
   /// Color: #3EBDE0
   static const Color skyBlue = Color(0xFF3EBDE0);
 
