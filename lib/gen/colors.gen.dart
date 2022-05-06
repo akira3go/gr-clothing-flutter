@@ -14,6 +14,9 @@ class ColorName {
   /// Color: #F5F5F5
   static const Color backgroundLightGray = Color(0xFFF5F5F5);
 
+  /// Color: #F9FBFD
+  static const Color backgroundRankingGray = Color(0xFFF9FBFD);
+
   /// Color: #C01148
   static const Color deepPink = Color(0xFFC01148);
 
@@ -31,4 +34,22 @@ class ColorName {
 
   /// Color: #FF8A65
   static const Color peoples = Color(0xFFFF8A65);
+
+  /// Color: #FCBE16
+  static const Color rankingFirst = Color(0xFFFCBE16);
+
+  /// Color: #797979
+  static const Color rankingOther = Color(0xFF797979);
+
+  /// Color: #ADADAD
+  static const Color rankingSecond = Color(0xFFADADAD);
+
+  /// Color: #C26019
+  static const Color rankingThird = Color(0xFFC26019);
+
+  /// Color: #3EBDE0
+  static const Color skyBlue = Color(0xFF3EBDE0);
+
+  /// Color: #249DBC
+  static const Color skyDeepBlue = Color(0xFF249DBC);
 }

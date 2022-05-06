@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
-import 'package:gr_clothing_flutter/pages/main_tab/main_tab_page.dart';
+import 'package:gr_clothing_flutter/pages/home/home_router_delegate.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 
 void main() {
@@ -18,12 +19,12 @@ class GRClothingApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        primaryColor: ColorName.skyBlue,
         primarySwatch: Colors.blue,
         fontFamily: FontFamily.hiragino,
         appBarTheme: const AppBarTheme(
-          foregroundColor: ColorName.peoples,
-          shape: Border(bottom: BorderSide(color: ColorName.peoples, width: 1)),
-          backgroundColor: Colors.white,
+          foregroundColor: Colors.white,
+          backgroundColor: ColorName.skyBlue,
           shadowColor: Colors.transparent,
           elevation: 0.0
         ),
@@ -31,21 +32,24 @@ class GRClothingApp extends StatelessWidget {
           padding: EdgeInsets.zero
         ),
       ),
-      home: _homeWidget(),
+      home: KeyboardDismissOnTap(child: _homeWidget()),
       // hidden the debug label.
       debugShowCheckedModeBanner: false,
     );
   }
 
   Widget _homeWidget() {
+    final topPage = Consumer(builder: (context, ref, widget) {
+      return Router(routerDelegate: HomeRouterDelegate(ref));
+    },);
     if (kDebugMode) {
-      return const Banner(
+      return Banner(
         message: "GekiClothing",
         location: BannerLocation.topStart,
-        child: MainTabPage(),
+        child: topPage
       );
     } else {
-      return const MainTabPage();
+      return topPage;
     }
   }
 }

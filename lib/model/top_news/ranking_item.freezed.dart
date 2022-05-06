@@ -21,8 +21,9 @@ RankingItem _$RankingItemFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RankingItem {
   String get body => throw _privateConstructorUsedError;
-  bool get isFavorite => throw _privateConstructorUsedError;
   String get link => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $RankingItemCopyWith<$Res> {
   factory $RankingItemCopyWith(
           RankingItem value, $Res Function(RankingItem) then) =
       _$RankingItemCopyWithImpl<$Res>;
-  $Res call({String body, bool isFavorite, String link});
+  $Res call({String body, String link, bool isFavorite, String image});
 }
 
 /// @nodoc
@@ -49,21 +50,26 @@ class _$RankingItemCopyWithImpl<$Res> implements $RankingItemCopyWith<$Res> {
   @override
   $Res call({
     Object? body = freezed,
-    Object? isFavorite = freezed,
     Object? link = freezed,
+    Object? isFavorite = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
+      link: link == freezed
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String,
       isFavorite: isFavorite == freezed
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
-      link: link == freezed
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -76,7 +82,7 @@ abstract class _$RankingItemCopyWith<$Res>
           _RankingItem value, $Res Function(_RankingItem) then) =
       __$RankingItemCopyWithImpl<$Res>;
   @override
-  $Res call({String body, bool isFavorite, String link});
+  $Res call({String body, String link, bool isFavorite, String image});
 }
 
 /// @nodoc
@@ -92,21 +98,26 @@ class __$RankingItemCopyWithImpl<$Res> extends _$RankingItemCopyWithImpl<$Res>
   @override
   $Res call({
     Object? body = freezed,
-    Object? isFavorite = freezed,
     Object? link = freezed,
+    Object? isFavorite = freezed,
+    Object? image = freezed,
   }) {
     return _then(_RankingItem(
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
+      link: link == freezed
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String,
       isFavorite: isFavorite == freezed
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
-      link: link == freezed
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -116,7 +127,10 @@ class __$RankingItemCopyWithImpl<$Res> extends _$RankingItemCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_RankingItem implements _RankingItem {
   _$_RankingItem(
-      {required this.body, required this.isFavorite, required this.link});
+      {required this.body,
+      required this.link,
+      required this.isFavorite,
+      required this.image});
 
   factory _$_RankingItem.fromJson(Map<String, dynamic> json) =>
       _$$_RankingItemFromJson(json);
@@ -124,13 +138,15 @@ class _$_RankingItem implements _RankingItem {
   @override
   final String body;
   @override
+  final String link;
+  @override
   final bool isFavorite;
   @override
-  final String link;
+  final String image;
 
   @override
   String toString() {
-    return 'RankingItem(body: $body, isFavorite: $isFavorite, link: $link)';
+    return 'RankingItem(body: $body, link: $link, isFavorite: $isFavorite, image: $image)';
   }
 
   @override
@@ -139,9 +155,10 @@ class _$_RankingItem implements _RankingItem {
         (other.runtimeType == runtimeType &&
             other is _RankingItem &&
             const DeepCollectionEquality().equals(other.body, body) &&
+            const DeepCollectionEquality().equals(other.link, link) &&
             const DeepCollectionEquality()
                 .equals(other.isFavorite, isFavorite) &&
-            const DeepCollectionEquality().equals(other.link, link));
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @JsonKey(ignore: true)
@@ -149,8 +166,9 @@ class _$_RankingItem implements _RankingItem {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(body),
+      const DeepCollectionEquality().hash(link),
       const DeepCollectionEquality().hash(isFavorite),
-      const DeepCollectionEquality().hash(link));
+      const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
@@ -166,8 +184,9 @@ class _$_RankingItem implements _RankingItem {
 abstract class _RankingItem implements RankingItem {
   factory _RankingItem(
       {required final String body,
+      required final String link,
       required final bool isFavorite,
-      required final String link}) = _$_RankingItem;
+      required final String image}) = _$_RankingItem;
 
   factory _RankingItem.fromJson(Map<String, dynamic> json) =
       _$_RankingItem.fromJson;
@@ -175,9 +194,11 @@ abstract class _RankingItem implements RankingItem {
   @override
   String get body => throw _privateConstructorUsedError;
   @override
+  String get link => throw _privateConstructorUsedError;
+  @override
   bool get isFavorite => throw _privateConstructorUsedError;
   @override
-  String get link => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$RankingItemCopyWith<_RankingItem> get copyWith =>

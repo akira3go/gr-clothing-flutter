@@ -7,8 +7,42 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/app_icon.png
+  AssetGenImage get appIcon =>
+      const AssetGenImage('assets/images/app_icon.png');
+
+  /// File path: assets/images/artist_icon.png
+  AssetGenImage get artistIcon =>
+      const AssetGenImage('assets/images/artist_icon.png');
+
+  /// File path: assets/images/brand_icon.png
+  AssetGenImage get brandIcon =>
+      const AssetGenImage('assets/images/brand_icon.png');
+
+  /// File path: assets/images/category_icon.png
+  AssetGenImage get categoryIcon =>
+      const AssetGenImage('assets/images/category_icon.png');
+
+  /// File path: assets/images/logo_icon.png
+  AssetGenImage get logoIcon =>
+      const AssetGenImage('assets/images/logo_icon.png');
+
+  /// File path: assets/images/news_icon.png
+  AssetGenImage get newsIcon =>
+      const AssetGenImage('assets/images/news_icon.png');
+
+  /// File path: assets/images/sale_icon.png
+  AssetGenImage get saleIcon =>
+      const AssetGenImage('assets/images/sale_icon.png');
+}
+
 class Assets {
   Assets._();
+
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage extends AssetImage {

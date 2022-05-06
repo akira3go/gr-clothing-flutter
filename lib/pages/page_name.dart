@@ -1,6 +1,6 @@
 enum PageName {
   none,
-  homePage,
+  topPage,
   favoritePage,
   detailPage
 }

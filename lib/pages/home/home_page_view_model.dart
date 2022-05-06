@@ -11,7 +11,6 @@ import 'package:gr_clothing_flutter/model/top_news/interview.dart';
 import 'package:gr_clothing_flutter/model/top_news/live_report.dart';
 import 'package:gr_clothing_flutter/model/top_news/music_video.dart';
 import 'package:gr_clothing_flutter/model/top_news/news.dart';
-import 'package:gr_clothing_flutter/model/top_news/ranking_item.dart';
 import 'package:gr_clothing_flutter/model/top_news/special_feature.dart';
 import 'package:gr_clothing_flutter/model/top_news/top_image.dart';
 import 'package:gr_clothing_flutter/model/top_news/top_news.dart';
@@ -227,44 +226,44 @@ class HomePageState {
                 "https://gekirock.com/news/2022/04/limp_bizkit_dad_vibes_mv.php"),
       ],
       accessRanking: AccessRanking(japanese: [
-        RankingItem(
-            body:
-                "ランキング１位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
-            isFavorite: true,
-            link: mockLinkUrl),
-        RankingItem(
-            body: "ランキング２位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
-            isFavorite: false,
-            link: mockLinkUrl),
-        RankingItem(
-            body: "ランキング３位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
-            isFavorite: false,
-            link: mockLinkUrl),
-        RankingItem(
-            body: "ランキング４位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
-            isFavorite: true,
-            link: mockLinkUrl),
-        RankingItem(
-            body: "ランキング５位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
-            isFavorite: false,
-            link: mockLinkUrl),
+        // RankingItem(
+        //     body:
+        //         "ランキング１位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
+        //     isFavorite: true,
+        //     link: mockLinkUrl),
+        // RankingItem(
+        //     body: "ランキング２位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
+        //     isFavorite: false,
+        //     link: mockLinkUrl),
+        // RankingItem(
+        //     body: "ランキング３位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
+        //     isFavorite: false,
+        //     link: mockLinkUrl),
+        // RankingItem(
+        //     body: "ランキング４位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
+        //     isFavorite: true,
+        //     link: mockLinkUrl),
+        // RankingItem(
+        //     body: "ランキング５位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
+        //     isFavorite: false,
+        //     link: mockLinkUrl),
       ], overseas: [
-        RankingItem(
-            body: "ランキング１位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
-            isFavorite: false,
-            link: mockLinkUrl),
-        RankingItem(
-            body: "ランキング２位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
-            isFavorite: true,
-            link: mockLinkUrl),
-        RankingItem(
-            body: "ランキング３位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
-            isFavorite: false,
-            link: mockLinkUrl),
-        RankingItem(
-            body: "ランキング４位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
-            isFavorite: true,
-            link: mockLinkUrl),
+        // RankingItem(
+        //     body: "ランキング１位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
+        //     isFavorite: false,
+        //     link: mockLinkUrl),
+        // RankingItem(
+        //     body: "ランキング２位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
+        //     isFavorite: true,
+        //     link: mockLinkUrl),
+        // RankingItem(
+        //     body: "ランキング３位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
+        //     isFavorite: false,
+        //     link: mockLinkUrl),
+        // RankingItem(
+        //     body: "ランキング４位だーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー色々綴る",
+        //     isFavorite: true,
+        //     link: mockLinkUrl),
       ]),
       artistColumnList: [
         ArtistColumn(
