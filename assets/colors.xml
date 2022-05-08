@@ -15,4 +15,6 @@
     <color name="rankingThird">#C26019</color>
     <color name="rankingOther">#797979</color>
     <color name="saleTabInactive">#B75959</color>
+    <color name="lightYellow">#FBF8E3</color>
+    <color name="deepYellow">#F9EACC</color>
 </resources>

@@ -20,6 +20,9 @@ class ColorName {
   /// Color: #C01148
   static const Color deepPink = Color(0xFFC01148);
 
+  /// Color: #F9EACC
+  static const Color deepYellow = Color(0xFFF9EACC);
+
   /// Color: #333333
   static const Color gray = Color(0xFF333333);
 
@@ -28,6 +31,9 @@ class ColorName {
 
   /// Color: #999999
   static const Color lightGray = Color(0xFF999999);
+
+  /// Color: #FBF8E3
+  static const Color lightYellow = Color(0xFFFBF8E3);
 
   /// Color: #22AE95
   static const Color overseas = Color(0xFF22AE95);

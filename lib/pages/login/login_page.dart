@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:gr_clothing_flutter/model/shared_preferences/preferences_provider.dart';
 import 'package:gr_clothing_flutter/model/url_launcher/open_browser.dart';
 
 class LoginPage extends ConsumerWidget {
@@ -115,7 +116,10 @@ class LoginPage extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  ref.read(preferencesProvider.notifier).isLoggedIn = true;
+                  Navigator.of(context).pop();
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [

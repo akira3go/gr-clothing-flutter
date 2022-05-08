@@ -15,6 +15,7 @@ import 'package:gr_clothing_flutter/pages/top/top_page_view_model.dart';
 import 'package:gr_clothing_flutter/utils/widget/gradation_border.dart';
 import 'package:gr_clothing_flutter/utils/wrapper/gr_network_image.dart';
 import 'package:gr_clothing_flutter/model/news/clothing_product.dart';
+import 'package:gr_clothing_flutter/model/shared_preferences/preferences_provider.dart';
 
 class TopPage extends ConsumerWidget {
   TopPage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class TopPage extends ConsumerWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final productListTabType =
-      StateProvider.autoDispose<ProductListTabType>((ref) {
+  StateProvider.autoDispose<ProductListTabType>((ref) {
     return ProductListTabType.normal;
   });
 
@@ -66,80 +67,7 @@ class TopPage extends ConsumerWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            height: 26,
-            color: ColorName.skyDeepBlue,
-            padding: const EdgeInsets.all(3),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: MaterialButton(
-                    onPressed: () =>
-                        ref.read(showLoginPageProvider.notifier).state = true,
-                    padding: EdgeInsets.zero,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.login_rounded,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        SizedBox(width: 3),
-                        Text(
-                          "ログイン",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: MaterialButton(
-                    onPressed: () => openBrowser(LinkUrl.signUpAccount),
-                    padding: EdgeInsets.zero,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.create_rounded,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        SizedBox(width: 3),
-                        Text(
-                          "新規会員登録",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: MaterialButton(
-                    onPressed: () {},
-                    padding: EdgeInsets.zero,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.remove_red_eye_outlined,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        SizedBox(width: 3),
-                        Text(
-                          "新着一覧",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          _headerTabWidget(ref),
           _searchFieldWidget(),
           AspectRatio(
             aspectRatio: 4,
@@ -166,7 +94,7 @@ class TopPage extends ConsumerWidget {
                       const SizedBox(height: 10),
                       GRNetworkImage(
                         imageUrl:
-                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220427_ankimo-thumb-1200xauto-1045.jpg",
+                        "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220427_ankimo-thumb-1200xauto-1045.jpg",
                         fit: BoxFit.fill,
                       ),
                       SizedBox(
@@ -176,14 +104,14 @@ class TopPage extends ConsumerWidget {
                             Expanded(
                               child: GRNetworkImage(
                                 imageUrl:
-                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/subciety_banner_20220430-thumb-1200xauto-1049.jpg",
+                                "https://shop.gekirock.com/content/banner/assets_c/2022/04/subciety_banner_20220430-thumb-1200xauto-1049.jpg",
                                 fit: BoxFit.fill,
                               ),
                             ),
                             Expanded(
                               child: GRNetworkImage(
                                 imageUrl:
-                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/gs_20220430-thumb-1200xauto-1050.jpg",
+                                "https://shop.gekirock.com/content/banner/assets_c/2022/04/gs_20220430-thumb-1200xauto-1050.jpg",
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -197,14 +125,14 @@ class TopPage extends ConsumerWidget {
                             Expanded(
                               child: GRNetworkImage(
                                 imageUrl:
-                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_serenity-thumb-1200xauto-1047.jpg",
+                                "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_serenity-thumb-1200xauto-1047.jpg",
                                 fit: BoxFit.fill,
                               ),
                             ),
                             Expanded(
                               child: GRNetworkImage(
                                 imageUrl:
-                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_GALFY-thumb-1200xauto-1046.jpg",
+                                "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_GALFY-thumb-1200xauto-1046.jpg",
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -226,6 +154,100 @@ class TopPage extends ConsumerWidget {
                   child: GradationBorder(height: 10, reverse: true),
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // header部分のタブ
+  Widget _headerTabWidget(WidgetRef ref) {
+    final isLoggedIn =
+    ref.watch(preferencesProvider.select((value) => value.isLoggedIn));
+    return Container(
+      height: 26,
+      color: ColorName.skyDeepBlue,
+      padding: const EdgeInsets.all(3),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: MaterialButton(
+              onPressed: () {
+                if (isLoggedIn) {
+                  ref.read(showMyPageProvider.notifier).state = true;
+                } else {
+                  ref.read(showLoginPageProvider.notifier).state = true;
+                }
+              },
+              padding: EdgeInsets.zero,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    isLoggedIn ? Icons.person : Icons.login_rounded,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                  const SizedBox(width: 3),
+                  Text(
+                    isLoggedIn ? "Myページ" : "ログイン",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: MaterialButton(
+              onPressed: () => openBrowser(LinkUrl.signUpAccount),
+              padding: EdgeInsets.zero,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    isLoggedIn ? Icons.star_rounded : Icons.create_rounded,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                  const SizedBox(width: 3),
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      isLoggedIn ? "お気に入り" : "新規会員登録",
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            child: MaterialButton(
+              onPressed: () {
+                if (isLoggedIn) {
+                  ref.read(preferencesProvider.notifier).isLoggedIn = false;
+                }
+              },
+              padding: EdgeInsets.zero,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    isLoggedIn
+                        ? Icons.logout_rounded
+                        : Icons.remove_red_eye_outlined,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                  const SizedBox(width: 3),
+                  Text(
+                    isLoggedIn ? "ログアウト" : "新着一覧",
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -294,7 +316,9 @@ class TopPage extends ConsumerWidget {
         children: [
           GestureDetector(
             onTap: () =>
-                ref.read(topPageCategoryProvider.notifier).state = category,
+            ref
+                .read(topPageCategoryProvider.notifier)
+                .state = category,
             child: Container(
               padding: category == TopPageCategory.sale
                   ? const EdgeInsets.all(12)
@@ -356,7 +380,7 @@ class TopPage extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: GRNetworkImage(
                   imageUrl:
-                      "https://gekirock.com/news/assets_c/2022/05/sabbat13_banner_20220430-thumb-420xauto-88961.jpg",
+                  "https://gekirock.com/news/assets_c/2022/05/sabbat13_banner_20220430-thumb-420xauto-88961.jpg",
                 ),
               );
             },
@@ -392,7 +416,7 @@ class TopPage extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: GRNetworkImage(
                   imageUrl:
-                      "https://gekirock.com/news/assets_c/2022/05/sabbat13_banner_20220430-thumb-420xauto-88961.jpg",
+                  "https://gekirock.com/news/assets_c/2022/05/sabbat13_banner_20220430-thumb-420xauto-88961.jpg",
                 ),
               );
             },
@@ -428,7 +452,10 @@ class TopPage extends ConsumerWidget {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.width * 0.7,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .width * 0.7,
                 child: CarouselSlider.builder(
                   itemCount: rankingItems[index].ranking.length,
                   itemBuilder: (context, carouselIndex, realIndex) {
@@ -486,7 +513,10 @@ class TopPage extends ConsumerWidget {
 
   // 商品一覧
   Widget _productListWidget(BuildContext context, WidgetRef ref) {
-    final tabWidth = MediaQuery.of(context).size.width * 0.287;
+    final tabWidth = MediaQuery
+        .of(context)
+        .size
+        .width * 0.287;
     final selectedTab = ref.watch(productListTabType);
     final state = ref.watch(newsViewModelProvider);
     const normalTab = ProductListTabType.normal;
@@ -541,7 +571,7 @@ class TopPage extends ConsumerWidget {
                 alignment: Alignment.topCenter,
                 child: ClothingProductListItem(
                   clothingProduct:
-                      _clothingProductList(selectedTab, state)[index],
+                  _clothingProductList(selectedTab, state)[index],
                   isReserve: selectedTab == ProductListTabType.reserve,
                 ),
               );
@@ -555,7 +585,10 @@ class TopPage extends ConsumerWidget {
   Widget _productListTab(WidgetRef ref, double width,
       ProductListTabType selectedTab, ProductListTabType tabType) {
     return GestureDetector(
-      onTap: () => ref.read(productListTabType.notifier).state = tabType,
+      onTap: () =>
+      ref
+          .read(productListTabType.notifier)
+          .state = tabType,
       child: Container(
         width: width,
         color: selectedTab == tabType
@@ -571,8 +604,8 @@ class TopPage extends ConsumerWidget {
   }
 
   // 商品一覧
-  List<ClothingProduct> _clothingProductList(
-      ProductListTabType tabType, NewsState state) {
+  List<ClothingProduct> _clothingProductList(ProductListTabType tabType,
+      NewsState state) {
     switch (tabType) {
       case ProductListTabType.normal:
         return state.normalClothingProductList;
