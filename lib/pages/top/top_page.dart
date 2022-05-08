@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/assets.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:gr_clothing_flutter/pages/home/home_router_delegate.dart';
 import 'package:gr_clothing_flutter/pages/top/clothing_product_list_item.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page_category.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page_ranking_brand_item.dart';
@@ -67,7 +68,8 @@ class TopPage extends ConsumerWidget {
               children: [
                 Expanded(
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () =>
+                        ref.read(showLoginPageProvider.notifier).state = true,
                     padding: EdgeInsets.zero,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -75,10 +77,9 @@ class TopPage extends ConsumerWidget {
                         Icon(
                           Icons.login_rounded,
                           color: Colors.white,
+                          size: 16,
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
+                        SizedBox(width: 3),
                         Text(
                           "ログイン",
                           style: TextStyle(color: Colors.white),
@@ -97,10 +98,9 @@ class TopPage extends ConsumerWidget {
                         Icon(
                           Icons.create_rounded,
                           color: Colors.white,
+                          size: 16,
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
+                        SizedBox(width: 3),
                         Text(
                           "新規会員登録",
                           style: TextStyle(color: Colors.white),
@@ -119,10 +119,9 @@ class TopPage extends ConsumerWidget {
                         Icon(
                           Icons.remove_red_eye_outlined,
                           color: Colors.white,
+                          size: 16,
                         ),
-                        SizedBox(
-                          width: 5,
-                        ),
+                        SizedBox(width: 3),
                         Text(
                           "新着一覧",
                           style: TextStyle(color: Colors.white),
