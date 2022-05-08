@@ -1,3 +1,4 @@
+import 'package:gr_clothing_flutter/model/url_launcher/open_browser.dart';
 
 enum TopDrawerListItemType {
   newArrival,
@@ -54,6 +55,27 @@ extension TopDrawerItemTypeExtension on TopDrawerItemType {
         return "渋谷店";
       case TopDrawerItemType.questions:
         return "よくある質問";
+    }
+  }
+
+  LinkUrl get linkUrl {
+    switch (this) {
+      case TopDrawerItemType.aboutThisSite:
+        return LinkUrl.aboutsThisSite;
+      case TopDrawerItemType.inquiry:
+    return LinkUrl.contact;
+      case TopDrawerItemType.specifiedTransactionLaw:
+      return LinkUrl.order;
+      case TopDrawerItemType.privacyPolicy:
+    return LinkUrl.privacyPolicy;
+      case TopDrawerItemType.beginnersGuide:
+    return LinkUrl.forBeginner;
+      case TopDrawerItemType.shippingHandling:
+    return LinkUrl.freightAndFee;
+      case TopDrawerItemType.shibuya:
+    return LinkUrl.sibuya;
+      case TopDrawerItemType.questions:
+    return LinkUrl.faq;
     }
   }
 }

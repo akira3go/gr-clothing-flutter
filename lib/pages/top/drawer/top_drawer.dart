@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:gr_clothing_flutter/gen/assets.gen.dart';
+import 'package:gr_clothing_flutter/model/url_launcher/open_browser.dart';
 import 'package:gr_clothing_flutter/pages/top/drawer/top_drawer_list_type.dart';
 
 class TopDrawer extends StatelessWidget {
@@ -159,47 +160,55 @@ class TopDrawer extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: (TopDrawerItemType.values.length / 2).ceil(),
       itemBuilder: (context, index) {
+        final startItem = TopDrawerItemType.values[(index * 2) + 0];
+        final endItem = TopDrawerItemType.values[(index * 2) + 1];
         return Row(
           children: [
             Expanded(
-              child: Container(
-                color: ColorName.skyDeepBlue,
-                height: 45,
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                ),
-                margin: const EdgeInsets.only(right: 1, bottom: 1),
-                child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Text(
-                    TopDrawerItemType.values[(index * 2) + 0].title,
-                    maxLines: 1,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
+              child: GestureDetector(
+                onTap: () => openBrowser(startItem.linkUrl),
+                child: Container(
+                  color: ColorName.skyDeepBlue,
+                  height: 45,
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                  ),
+                  margin: const EdgeInsets.only(right: 1, bottom: 1),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      startItem.title,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
             Expanded(
-              child: Container(
-                color: ColorName.skyDeepBlue,
-                height: 45,
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                ),
-                margin: const EdgeInsets.only(bottom: 1),
-                child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Text(
-                    TopDrawerItemType.values[(index * 2) + 1].title,
-                    maxLines: 1,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
+              child: GestureDetector(
+                onTap: () => openBrowser(endItem.linkUrl),
+                child: Container(
+                  color: ColorName.skyDeepBlue,
+                  height: 45,
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                  ),
+                  margin: const EdgeInsets.only(bottom: 1),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      endItem.title,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                      ),
                     ),
                   ),
                 ),

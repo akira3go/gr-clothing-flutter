@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/assets.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:gr_clothing_flutter/model/url_launcher/open_browser.dart';
 import 'package:gr_clothing_flutter/pages/home/home_router_delegate.dart';
 import 'package:gr_clothing_flutter/pages/top/clothing_product_list_item.dart';
 import 'package:gr_clothing_flutter/pages/top/drawer/top_drawer.dart';
@@ -96,7 +97,7 @@ class TopPage extends ConsumerWidget {
                 ),
                 Expanded(
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () => openBrowser(LinkUrl.signUpAccount),
                     padding: EdgeInsets.zero,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

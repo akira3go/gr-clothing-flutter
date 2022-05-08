@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:gr_clothing_flutter/model/url_launcher/open_browser.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -59,7 +60,7 @@ class LoginPage extends ConsumerWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => openBrowser(LinkUrl.forgotPassword),
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(
                     const EdgeInsets.only(top: 10, bottom: 5),
@@ -86,7 +87,7 @@ class LoginPage extends ConsumerWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => openBrowser(LinkUrl.contact),
                 style: ButtonStyle(
                   padding: MaterialStateProperty.all(
                     const EdgeInsets.symmetric(vertical: 5),
@@ -142,7 +143,7 @@ class LoginPage extends ConsumerWidget {
               ),
               const SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () => openBrowser(LinkUrl.signUpAccount),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
                 ),
