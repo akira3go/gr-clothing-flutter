@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:gr_clothing_flutter/gen/assets.gen.dart';
+import 'package:gr_clothing_flutter/model/url_launcher/open_app.dart';
 import 'package:gr_clothing_flutter/model/url_launcher/open_browser.dart';
 import 'package:gr_clothing_flutter/pages/top/drawer/top_drawer_list_type.dart';
 
@@ -39,84 +40,7 @@ class TopDrawer extends StatelessWidget {
               children: [
                 _drawerList,
                 _linkDrawer,
-                Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Spacer(),
-                      Expanded(
-                        flex: 6,
-                        child: Column(
-                          children: [
-                            Assets.images.twitterIcon.image(),
-                            const FittedBox(
-                              fit: BoxFit.fitWidth,
-                              child: Text(
-                                "Twitter",
-                                maxLines: 1,
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Spacer(flex: 2),
-                      Expanded(
-                        flex: 6,
-                        child: Column(
-                          children: [
-                            Assets.images.instagramIcon.image(),
-                            const FittedBox(
-                              fit: BoxFit.fitWidth,
-                              child: Text(
-                                "Instagram",
-                                maxLines: 1,
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Spacer(flex: 2),
-                      Expanded(
-                        flex: 6,
-                        child: Column(
-                          children: [
-                            Assets.images.googleMapIcon.image(),
-                            const FittedBox(
-                              fit: BoxFit.fitWidth,
-                              child: Text(
-                                "Map",
-                                maxLines: 1,
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Spacer(flex: 2),
-                      Expanded(
-                        flex: 6,
-                        child: Column(
-                          children: [
-                            Assets.images.blogIcon.image(),
-                            const FittedBox(
-                              fit: BoxFit.fitWidth,
-                              child: Text(
-                                "Blog",
-                                maxLines: 1,
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Spacer(),
-                    ],
-                  ),
-                )
+                _appsWidget,
               ],
             ),
           ),
@@ -217,6 +141,99 @@ class TopDrawer extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+  
+  Widget get _appsWidget {
+    return Container(
+      color: Colors.white,
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Spacer(),
+          Expanded(
+            flex: 6,
+            child: GestureDetector(
+              onTap: () => openApp(LinkApp.twitter),
+              child: Column(
+                children: [
+                  Assets.images.twitterIcon.image(),
+                  const FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      "Twitter",
+                      maxLines: 1,
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Spacer(flex: 2),
+          Expanded(
+            flex: 6,
+            child: GestureDetector(
+              onTap: () => openApp(LinkApp.instagram),
+              child: Column(
+                children: [
+                  Assets.images.instagramIcon.image(),
+                  const FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      "Instagram",
+                      maxLines: 1,
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Spacer(flex: 2),
+          Expanded(
+            flex: 6,
+            child: GestureDetector(
+              onTap: () => openApp(LinkApp.googleMap),
+              child: Column(
+                children: [
+                  Assets.images.googleMapIcon.image(),
+                  const FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      "Map",
+                      maxLines: 1,
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Spacer(flex: 2),
+          Expanded(
+            flex: 6,
+            child: GestureDetector(
+              onTap: () => openBrowser(LinkUrl.blog),
+              child: Column(
+                children: [
+                  Assets.images.blogIcon.image(),
+                  const FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(
+                      "Blog",
+                      maxLines: 1,
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const Spacer(),
+        ],
+      ),
     );
   }
 }
