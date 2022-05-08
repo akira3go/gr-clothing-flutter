@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/assets.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:gr_clothing_flutter/pages/home/home_router_delegate.dart';
 import 'package:gr_clothing_flutter/pages/top/clothing_product_list_item.dart';
+import 'package:gr_clothing_flutter/pages/top/drawer/top_drawer.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page_category.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page_ranking_brand_item.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page_ranking_item.dart';
@@ -16,6 +18,8 @@ import 'package:gr_clothing_flutter/model/news/clothing_product.dart';
 class TopPage extends ConsumerWidget {
   TopPage({Key? key}) : super(key: key);
 
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final productListTabType =
       StateProvider.autoDispose<ProductListTabType>((ref) {
     return ProductListTabType.normal;
@@ -25,6 +29,7 @@ class TopPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(newsViewModelProvider);
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -33,7 +38,7 @@ class TopPage extends ConsumerWidget {
         leading: Padding(
           padding: const EdgeInsets.only(left: 8),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () => _scaffoldKey.currentState!.openDrawer(),
             icon: const Icon(
               Icons.menu,
               size: 30,
@@ -56,6 +61,7 @@ class TopPage extends ConsumerWidget {
           )
         ],
       ),
+      drawer: const TopDrawer(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

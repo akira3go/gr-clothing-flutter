@@ -18,6 +18,10 @@ class $AssetsImagesGen {
   AssetGenImage get artistIcon =>
       const AssetGenImage('assets/images/artist_icon.png');
 
+  /// File path: assets/images/blog_icon.png
+  AssetGenImage get blogIcon =>
+      const AssetGenImage('assets/images/blog_icon.png');
+
   /// File path: assets/images/brand_icon.png
   AssetGenImage get brandIcon =>
       const AssetGenImage('assets/images/brand_icon.png');
@@ -25,6 +29,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/category_icon.png
   AssetGenImage get categoryIcon =>
       const AssetGenImage('assets/images/category_icon.png');
+
+  /// File path: assets/images/google_map_icon.png
+  AssetGenImage get googleMapIcon =>
+      const AssetGenImage('assets/images/google_map_icon.png');
+
+  /// File path: assets/images/instagram_icon.png
+  AssetGenImage get instagramIcon =>
+      const AssetGenImage('assets/images/instagram_icon.png');
 
   /// File path: assets/images/logo_icon.png
   AssetGenImage get logoIcon =>
@@ -37,6 +49,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/sale_icon.png
   AssetGenImage get saleIcon =>
       const AssetGenImage('assets/images/sale_icon.png');
+
+  /// File path: assets/images/twitter_icon.png
+  AssetGenImage get twitterIcon =>
+      const AssetGenImage('assets/images/twitter_icon.png');
 }
 
 class Assets {
