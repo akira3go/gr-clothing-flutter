@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/assets.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
@@ -52,7 +51,7 @@ class TopPage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () => ref.read(showCartPageProvider.notifier).state = true,
               icon: const Icon(
                 Icons.shopping_cart,
                 color: Colors.white,

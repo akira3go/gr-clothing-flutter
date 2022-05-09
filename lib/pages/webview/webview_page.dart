@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gr_clothing_flutter/pages/home/home_router_delegate.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:gr_clothing_flutter/gen/assets.gen.dart';
 
 class WebviewPage extends ConsumerWidget {
   WebviewPage({Key? key, required this.initialUrl}) : super(key: key);
@@ -17,6 +18,13 @@ class WebviewPage extends ConsumerWidget {
         backgroundColor: Colors.white,
         initialUrl: initialUrl,
         javascriptMode: JavascriptMode.unrestricted,
+        navigationDelegate: (request) {
+          if (!request.url.startsWith("https://shop.gekirock.com/cart/") && !request.url.startsWith("https://shop.gekirock.com/shopping/") ) {
+            ref.read(showCartPageProvider.notifier).state = false;
+            return NavigationDecision.prevent;
+          }
+          return NavigationDecision.navigate;
+        },
         onPageFinished: (_) {
           ref
               .read(isLoadingProvider.notifier)
@@ -30,19 +38,8 @@ class WebviewPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        shape: const Border(bottom: BorderSide(color: ColorName.peoples, width: 1)),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications, color: ColorName.peoples),
-            iconSize: 40,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu_book, color: ColorName.peoples),
-            iconSize: 40,
-          ),
-        ],
+        centerTitle: true,
+        title: Assets.images.logoIcon.image(height: 51, width: 114),
       ),
       body: Stack(children: stack,)
     );

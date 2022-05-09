@@ -4,6 +4,7 @@ import 'package:gr_clothing_flutter/pages/login/login_page.dart';
 import 'package:gr_clothing_flutter/pages/my_page/my_page.dart';
 import 'package:gr_clothing_flutter/pages/page_name.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page.dart';
+import 'package:gr_clothing_flutter/pages/webview/webview_page.dart';
 
 final GlobalKey<NavigatorState> _nestedNavigatorKey =
     GlobalKey<NavigatorState>();
@@ -38,6 +39,13 @@ class HomeRouterDelegate extends RouterDelegate<void>
             child: MyPage(),
             fullscreenDialog: true,
           ),
+        if (ref.watch(showCartPageProvider))
+          MaterialPage(
+            arguments: PageName.cartPage,
+            child: WebviewPage(
+              initialUrl: "https://shop.gekirock.com/cart/",
+            ),
+          ),
       ],
       onPopPage: (route, result) {
         if (!route.didPop(result)) {
@@ -50,6 +58,9 @@ class HomeRouterDelegate extends RouterDelegate<void>
             break;
           case PageName.myPage:
             ref.read(showMyPageProvider.notifier).state = false;
+            break;
+          case PageName.cartPage:
+            ref.read(showCartPageProvider.notifier).state = false;
             break;
           default:
             break;
@@ -65,3 +76,4 @@ class HomeRouterDelegate extends RouterDelegate<void>
 
 final showLoginPageProvider = StateProvider.autoDispose<bool>((ref) => false);
 final showMyPageProvider = StateProvider.autoDispose<bool>((ref) => false);
+final showCartPageProvider = StateProvider.autoDispose<bool>((ref) => false);
