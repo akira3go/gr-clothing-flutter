@@ -25,6 +25,7 @@ mixin _$ClothingProduct {
   num? get salesPrice => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
   String get part => throw _privateConstructorUsedError;
+  String get itemName => throw _privateConstructorUsedError;
   ProductSize? get leftSize => throw _privateConstructorUsedError;
   double? get leftShoeSize => throw _privateConstructorUsedError;
   int? get leftCount => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $ClothingProductCopyWith<$Res> {
       num? salesPrice,
       String brand,
       String part,
+      String itemName,
       ProductSize? leftSize,
       double? leftShoeSize,
       int? leftCount});
@@ -67,6 +69,7 @@ class _$ClothingProductCopyWithImpl<$Res>
     Object? salesPrice = freezed,
     Object? brand = freezed,
     Object? part = freezed,
+    Object? itemName = freezed,
     Object? leftSize = freezed,
     Object? leftShoeSize = freezed,
     Object? leftCount = freezed,
@@ -91,6 +94,10 @@ class _$ClothingProductCopyWithImpl<$Res>
       part: part == freezed
           ? _value.part
           : part // ignore: cast_nullable_to_non_nullable
+              as String,
+      itemName: itemName == freezed
+          ? _value.itemName
+          : itemName // ignore: cast_nullable_to_non_nullable
               as String,
       leftSize: leftSize == freezed
           ? _value.leftSize
@@ -121,6 +128,7 @@ abstract class _$ClothingProductCopyWith<$Res>
       num? salesPrice,
       String brand,
       String part,
+      String itemName,
       ProductSize? leftSize,
       double? leftShoeSize,
       int? leftCount});
@@ -144,6 +152,7 @@ class __$ClothingProductCopyWithImpl<$Res>
     Object? salesPrice = freezed,
     Object? brand = freezed,
     Object? part = freezed,
+    Object? itemName = freezed,
     Object? leftSize = freezed,
     Object? leftShoeSize = freezed,
     Object? leftCount = freezed,
@@ -168,6 +177,10 @@ class __$ClothingProductCopyWithImpl<$Res>
       part: part == freezed
           ? _value.part
           : part // ignore: cast_nullable_to_non_nullable
+              as String,
+      itemName: itemName == freezed
+          ? _value.itemName
+          : itemName // ignore: cast_nullable_to_non_nullable
               as String,
       leftSize: leftSize == freezed
           ? _value.leftSize
@@ -194,6 +207,7 @@ class _$_ClothingProduct implements _ClothingProduct {
       this.salesPrice,
       required this.brand,
       required this.part,
+      required this.itemName,
       this.leftSize,
       this.leftShoeSize,
       this.leftCount});
@@ -212,6 +226,8 @@ class _$_ClothingProduct implements _ClothingProduct {
   @override
   final String part;
   @override
+  final String itemName;
+  @override
   final ProductSize? leftSize;
   @override
   final double? leftShoeSize;
@@ -220,7 +236,7 @@ class _$_ClothingProduct implements _ClothingProduct {
 
   @override
   String toString() {
-    return 'ClothingProduct(image: $image, price: $price, salesPrice: $salesPrice, brand: $brand, part: $part, leftSize: $leftSize, leftShoeSize: $leftShoeSize, leftCount: $leftCount)';
+    return 'ClothingProduct(image: $image, price: $price, salesPrice: $salesPrice, brand: $brand, part: $part, itemName: $itemName, leftSize: $leftSize, leftShoeSize: $leftShoeSize, leftCount: $leftCount)';
   }
 
   @override
@@ -234,6 +250,7 @@ class _$_ClothingProduct implements _ClothingProduct {
                 .equals(other.salesPrice, salesPrice) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
             const DeepCollectionEquality().equals(other.part, part) &&
+            const DeepCollectionEquality().equals(other.itemName, itemName) &&
             const DeepCollectionEquality().equals(other.leftSize, leftSize) &&
             const DeepCollectionEquality()
                 .equals(other.leftShoeSize, leftShoeSize) &&
@@ -249,6 +266,7 @@ class _$_ClothingProduct implements _ClothingProduct {
       const DeepCollectionEquality().hash(salesPrice),
       const DeepCollectionEquality().hash(brand),
       const DeepCollectionEquality().hash(part),
+      const DeepCollectionEquality().hash(itemName),
       const DeepCollectionEquality().hash(leftSize),
       const DeepCollectionEquality().hash(leftShoeSize),
       const DeepCollectionEquality().hash(leftCount));
@@ -271,6 +289,7 @@ abstract class _ClothingProduct implements ClothingProduct {
       final num? salesPrice,
       required final String brand,
       required final String part,
+      required final String itemName,
       final ProductSize? leftSize,
       final double? leftShoeSize,
       final int? leftCount}) = _$_ClothingProduct;
@@ -288,6 +307,8 @@ abstract class _ClothingProduct implements ClothingProduct {
   String get brand => throw _privateConstructorUsedError;
   @override
   String get part => throw _privateConstructorUsedError;
+  @override
+  String get itemName => throw _privateConstructorUsedError;
   @override
   ProductSize? get leftSize => throw _privateConstructorUsedError;
   @override

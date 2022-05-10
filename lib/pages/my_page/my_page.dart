@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
+import 'package:gr_clothing_flutter/pages/favorite/favorite_page_body.dart';
 
 class MyPage extends ConsumerWidget {
   MyPage({Key? key}) : super(key: key);
@@ -24,8 +25,9 @@ class MyPage extends ConsumerWidget {
           children: [
             _topTab(ref),
             _hasPoint(),
-            const Text("購入履歴一覧", style: TextStyle(fontSize: 18)),
-            const Text("購入履歴はありません。"),
+            Expanded(
+              child: _myPageContent(ref.watch(topTabProvider)),
+            ),
           ],
         ),
       ),
@@ -118,7 +120,7 @@ class MyPage extends ConsumerWidget {
   // 所持ポイント
   Widget _hasPoint() {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: ColorName.lightYellow,
@@ -163,6 +165,39 @@ class MyPage extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  Widget _myPageContent(MyPageTopTab tab) {
+    switch (tab) {
+      case MyPageTopTab.purchaseHistory:
+        return Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                "購入履歴一覧",
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 10),
+              Text("購入履歴はありません。"),
+            ],
+          ),
+        );
+      case MyPageTopTab.favorite:
+        return const FavoritePageBody();
+      case MyPageTopTab.setting:
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              "購入履歴一覧",
+              style: TextStyle(fontSize: 18),
+            ),
+            Text("購入履歴はありません。"),
+          ],
+        );
+    }
   }
 }
 

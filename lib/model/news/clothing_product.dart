@@ -12,6 +12,7 @@ class ClothingProduct with _$ClothingProduct {
     num? salesPrice,
     required String brand,
     required String part,
+    required String itemName,
     ProductSize? leftSize,
     double? leftShoeSize,
     int? leftCount,

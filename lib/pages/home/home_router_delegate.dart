@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gr_clothing_flutter/pages/favorite/favorite_page.dart';
 import 'package:gr_clothing_flutter/pages/login/login_page.dart';
 import 'package:gr_clothing_flutter/pages/my_page/my_page.dart';
 import 'package:gr_clothing_flutter/pages/page_name.dart';
@@ -39,6 +40,12 @@ class HomeRouterDelegate extends RouterDelegate<void>
             child: MyPage(),
             fullscreenDialog: true,
           ),
+        if (ref.watch(showFavoritePageProvider))
+          const MaterialPage(
+            arguments: PageName.favoritePage,
+            child: FavoritePage(),
+            fullscreenDialog: true,
+          ),
         if (ref.watch(showCartPageProvider))
           MaterialPage(
             arguments: PageName.cartPage,
@@ -59,6 +66,9 @@ class HomeRouterDelegate extends RouterDelegate<void>
           case PageName.myPage:
             ref.read(showMyPageProvider.notifier).state = false;
             break;
+          case PageName.favoritePage:
+            ref.read(showFavoritePageProvider.notifier).state = false;
+            break;
           case PageName.cartPage:
             ref.read(showCartPageProvider.notifier).state = false;
             break;
@@ -76,4 +86,6 @@ class HomeRouterDelegate extends RouterDelegate<void>
 
 final showLoginPageProvider = StateProvider.autoDispose<bool>((ref) => false);
 final showMyPageProvider = StateProvider.autoDispose<bool>((ref) => false);
+final showFavoritePageProvider =
+    StateProvider.autoDispose<bool>((ref) => false);
 final showCartPageProvider = StateProvider.autoDispose<bool>((ref) => false);

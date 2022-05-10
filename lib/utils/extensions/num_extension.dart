@@ -5,4 +5,9 @@ extension NumExtension on num {
     final result = NumberFormat("#,###").format(this);
     return "¥$result";
   }
+
+  String get toJapanesePrice {
+    final result = NumberFormat("#,###").format(this);
+    return "$result 円";
+  }
 }

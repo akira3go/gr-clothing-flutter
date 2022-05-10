@@ -3,5 +3,6 @@ enum PageName {
   topPage,
   loginPage,
   myPage,
+  favoritePage,
   cartPage,
 }

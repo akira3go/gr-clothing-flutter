@@ -163,7 +163,7 @@ class TopPage extends ConsumerWidget {
   // header部分のタブ
   Widget _headerTabWidget(WidgetRef ref) {
     final isLoggedIn =
-    ref.watch(preferencesProvider.select((value) => value.isLoggedIn));
+        ref.watch(preferencesProvider.select((value) => value.isLoggedIn));
     return Container(
       height: 26,
       color: ColorName.skyDeepBlue,
@@ -200,7 +200,13 @@ class TopPage extends ConsumerWidget {
           ),
           Expanded(
             child: MaterialButton(
-              onPressed: () => openBrowser(LinkUrl.signUpAccount),
+              onPressed: () {
+                if (isLoggedIn) {
+                  ref.read(showFavoritePageProvider.notifier).state = true;
+                } else {
+                  openBrowser(LinkUrl.signUpAccount);
+                }
+              },
               padding: EdgeInsets.zero,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
