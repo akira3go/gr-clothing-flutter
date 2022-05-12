@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
+import 'package:gr_clothing_flutter/model/url_launcher/open_browser.dart';
 import 'package:gr_clothing_flutter/pages/favorite/favorite_page_body.dart';
 
 class MyPage extends ConsumerWidget {
@@ -17,6 +18,23 @@ class MyPage extends ConsumerWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text("MYページ"),
+        actions: [
+          PopupMenuButton(
+            icon: const Icon(Icons.settings_rounded),
+            iconSize: 20,
+            itemBuilder: (context) {
+              return PopupMenuItemType.values.map((e) {
+                return PopupMenuItem(
+                  child: Text(e.title),
+                  value: e,
+                );
+              }).toList();
+            },
+            onSelected: (PopupMenuItemType type) {
+              openBrowser(type.linkUrl);
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
@@ -39,7 +57,6 @@ class MyPage extends ConsumerWidget {
     final myPageTopTab = ref.watch(topTabProvider);
     final isPurchaseHistory = myPageTopTab == MyPageTopTab.purchaseHistory;
     final isFavorite = myPageTopTab == MyPageTopTab.favorite;
-    final isSetting = myPageTopTab == MyPageTopTab.setting;
     return SizedBox(
       height: 40,
       child: Row(
@@ -83,30 +100,6 @@ class MyPage extends ConsumerWidget {
                   "お気に入り",
                   style: TextStyle(
                     color: isFavorite ? Colors.white : Colors.black,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 1),
-          Expanded(
-            child: GestureDetector(
-              onTap: () => ref.read(topTabProvider.notifier).state =
-                  MyPageTopTab.setting,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: isSetting ? ColorName.skyDeepBlue : Colors.white,
-                  border: Border.all(color: ColorName.lightGray),
-                  borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(5),
-                    bottomRight: Radius.circular(5),
-                  ),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  "設定",
-                  style: TextStyle(
-                    color: isSetting ? Colors.white : Colors.black,
                   ),
                 ),
               ),
@@ -205,4 +198,34 @@ enum MyPageTopTab {
   purchaseHistory,
   favorite,
   setting,
+}
+
+enum PopupMenuItemType {
+  changeUserData,
+  changeDestination,
+  withdrawal,
+}
+
+extension PopupMenuItemExtension on PopupMenuItemType {
+  String get title {
+    switch (this) {
+      case PopupMenuItemType.changeUserData:
+        return "会員登録内容変更";
+      case PopupMenuItemType.changeDestination:
+        return "お届け先追加・変更";
+      case PopupMenuItemType.withdrawal:
+        return "退会手続き";
+    }
+  }
+
+  LinkUrl get linkUrl {
+    switch (this) {
+      case PopupMenuItemType.changeUserData:
+        return LinkUrl.changeUserData;
+      case PopupMenuItemType.changeDestination:
+        return LinkUrl.changeDestination;
+      case PopupMenuItemType.withdrawal:
+        return LinkUrl.withdrawal;
+    }
+  }
 }

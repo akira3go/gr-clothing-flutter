@@ -36,8 +36,8 @@ class TopPage extends ConsumerWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Assets.images.logoIcon.image(height: 51, width: 114),
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8),
+        leading: Container(
+          margin: const EdgeInsets.only(left: 8),
           child: IconButton(
             onPressed: () => _scaffoldKey.currentState!.openDrawer(),
             icon: const Icon(
@@ -46,7 +46,6 @@ class TopPage extends ConsumerWidget {
             ),
           ),
         ),
-        leadingWidth: 30,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8),
