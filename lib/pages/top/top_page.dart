@@ -17,17 +17,11 @@ import 'package:gr_clothing_flutter/model/news/clothing_product.dart';
 import 'package:gr_clothing_flutter/model/shared_preferences/preferences_provider.dart';
 
 class TopPage extends ConsumerWidget {
-  TopPage({Key? key}) : super(key: key);
-
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final productListTabType =
-  StateProvider.autoDispose<ProductListTabType>((ref) {
-    return ProductListTabType.normal;
-  });
+  const TopPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final _scaffoldKey = GlobalKey<ScaffoldState>();
     final state = ref.watch(newsViewModelProvider);
     return Scaffold(
       key: _scaffoldKey,
@@ -50,7 +44,8 @@ class TopPage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: IconButton(
-              onPressed: () => ref.read(showCartPageProvider.notifier).state = true,
+              onPressed: () =>
+                  ref.read(showCartPageProvider.notifier).state = true,
               icon: const Icon(
                 Icons.shopping_cart,
                 color: Colors.white,
@@ -92,7 +87,7 @@ class TopPage extends ConsumerWidget {
                       const SizedBox(height: 10),
                       GRNetworkImage(
                         imageUrl:
-                        "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220427_ankimo-thumb-1200xauto-1045.jpg",
+                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220427_ankimo-thumb-1200xauto-1045.jpg",
                         fit: BoxFit.fill,
                       ),
                       SizedBox(
@@ -102,14 +97,14 @@ class TopPage extends ConsumerWidget {
                             Expanded(
                               child: GRNetworkImage(
                                 imageUrl:
-                                "https://shop.gekirock.com/content/banner/assets_c/2022/04/subciety_banner_20220430-thumb-1200xauto-1049.jpg",
+                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/subciety_banner_20220430-thumb-1200xauto-1049.jpg",
                                 fit: BoxFit.fill,
                               ),
                             ),
                             Expanded(
                               child: GRNetworkImage(
                                 imageUrl:
-                                "https://shop.gekirock.com/content/banner/assets_c/2022/04/gs_20220430-thumb-1200xauto-1050.jpg",
+                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/gs_20220430-thumb-1200xauto-1050.jpg",
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -123,14 +118,14 @@ class TopPage extends ConsumerWidget {
                             Expanded(
                               child: GRNetworkImage(
                                 imageUrl:
-                                "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_serenity-thumb-1200xauto-1047.jpg",
+                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_serenity-thumb-1200xauto-1047.jpg",
                                 fit: BoxFit.fill,
                               ),
                             ),
                             Expanded(
                               child: GRNetworkImage(
                                 imageUrl:
-                                "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_GALFY-thumb-1200xauto-1046.jpg",
+                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_GALFY-thumb-1200xauto-1046.jpg",
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -320,9 +315,7 @@ class TopPage extends ConsumerWidget {
         children: [
           GestureDetector(
             onTap: () =>
-            ref
-                .read(topPageCategoryProvider.notifier)
-                .state = category,
+                ref.read(topPageCategoryProvider.notifier).state = category,
             child: Container(
               padding: category == TopPageCategory.sale
                   ? const EdgeInsets.all(12)
@@ -384,7 +377,7 @@ class TopPage extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: GRNetworkImage(
                   imageUrl:
-                  "https://gekirock.com/news/assets_c/2022/05/sabbat13_banner_20220430-thumb-420xauto-88961.jpg",
+                      "https://gekirock.com/news/assets_c/2022/05/sabbat13_banner_20220430-thumb-420xauto-88961.jpg",
                 ),
               );
             },
@@ -420,7 +413,7 @@ class TopPage extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: GRNetworkImage(
                   imageUrl:
-                  "https://gekirock.com/news/assets_c/2022/05/sabbat13_banner_20220430-thumb-420xauto-88961.jpg",
+                      "https://gekirock.com/news/assets_c/2022/05/sabbat13_banner_20220430-thumb-420xauto-88961.jpg",
                 ),
               );
             },
@@ -456,10 +449,7 @@ class TopPage extends ConsumerWidget {
                 ),
               ),
               SizedBox(
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .width * 0.7,
+                height: MediaQuery.of(context).size.width * 0.7,
                 child: CarouselSlider.builder(
                   itemCount: rankingItems[index].ranking.length,
                   itemBuilder: (context, carouselIndex, realIndex) {
@@ -517,10 +507,7 @@ class TopPage extends ConsumerWidget {
 
   // 商品一覧
   Widget _productListWidget(BuildContext context, WidgetRef ref) {
-    final tabWidth = MediaQuery
-        .of(context)
-        .size
-        .width * 0.287;
+    final tabWidth = MediaQuery.of(context).size.width * 0.287;
     final selectedTab = ref.watch(productListTabType);
     final state = ref.watch(newsViewModelProvider);
     const normalTab = ProductListTabType.normal;
@@ -565,18 +552,22 @@ class TopPage extends ConsumerWidget {
             ),
             itemCount: _clothingProductList(selectedTab, state).length,
             itemBuilder: (context, index) {
-              return Container(
-                decoration: const BoxDecoration(
-                  border: Border(
-                    left: BorderSide(color: ColorName.backgroundLightGray),
-                    bottom: BorderSide(color: ColorName.backgroundLightGray),
+              return GestureDetector(
+                onTap: () =>
+                    ref.read(showProductDetailProvider.notifier).state = true,
+                child: Container(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(color: ColorName.backgroundLightGray),
+                      bottom: BorderSide(color: ColorName.backgroundLightGray),
+                    ),
                   ),
-                ),
-                alignment: Alignment.topCenter,
-                child: ClothingProductListItem(
-                  clothingProduct:
-                  _clothingProductList(selectedTab, state)[index],
-                  isReserve: selectedTab == ProductListTabType.reserve,
+                  alignment: Alignment.topCenter,
+                  child: ClothingProductListItem(
+                    clothingProduct:
+                        _clothingProductList(selectedTab, state)[index],
+                    isReserve: selectedTab == ProductListTabType.reserve,
+                  ),
                 ),
               );
             },
@@ -589,10 +580,7 @@ class TopPage extends ConsumerWidget {
   Widget _productListTab(WidgetRef ref, double width,
       ProductListTabType selectedTab, ProductListTabType tabType) {
     return GestureDetector(
-      onTap: () =>
-      ref
-          .read(productListTabType.notifier)
-          .state = tabType,
+      onTap: () => ref.read(productListTabType.notifier).state = tabType,
       child: Container(
         width: width,
         color: selectedTab == tabType
@@ -608,8 +596,8 @@ class TopPage extends ConsumerWidget {
   }
 
   // 商品一覧
-  List<ClothingProduct> _clothingProductList(ProductListTabType tabType,
-      NewsState state) {
+  List<ClothingProduct> _clothingProductList(
+      ProductListTabType tabType, NewsState state) {
     switch (tabType) {
       case ProductListTabType.normal:
         return state.normalClothingProductList;

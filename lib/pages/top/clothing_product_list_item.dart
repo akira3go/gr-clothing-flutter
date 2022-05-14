@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gr_clothing_flutter/model/news/clothing_product.dart';
 import 'package:gr_clothing_flutter/utils/extensions/num_extension.dart';
 import 'package:gr_clothing_flutter/utils/wrapper/gr_network_image.dart';
+import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
 
 // ignore: must_be_immutable
 class ClothingProductListItem extends StatelessWidget {
@@ -36,12 +37,41 @@ class ClothingProductListItem extends StatelessWidget {
             ),
           ],
         ),
+        if (clothingProduct.salesPrice != null)
+          FittedBox(
+            fit: BoxFit.fitWidth,
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: clothingProduct.salesPrice!.toPrice,
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      fontFamily: FontFamily.hiragino,
+                      decoration: TextDecoration.lineThrough,
+                      fontWeight: FontWeight.w700,
+                      decorationThickness: 2,
+                    ),
+                  ),
+                  const TextSpan(
+                    text: " →",
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         Text(
           clothingProduct.price.toPrice,
           style: const TextStyle(
             color: Colors.red,
-            fontSize: 18,
-            fontWeight: FontWeight.w900,
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
           ),
         ),
         Text(

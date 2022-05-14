@@ -20,6 +20,9 @@ class ColorName {
   /// Color: #C01148
   static const Color deepPink = Color(0xFFC01148);
 
+  /// Color: #D8544F
+  static const Color deepRed = Color(0xFFD8544F);
+
   /// Color: #F9EACC
   static const Color deepYellow = Color(0xFFF9EACC);
 
@@ -40,6 +43,9 @@ class ColorName {
 
   /// Color: #FF8A65
   static const Color peoples = Color(0xFFFF8A65);
+
+  /// Color: #C0CBCE
+  static const Color productDetailTag = Color(0xFFC0CBCE);
 
   /// Color: #FCBE16
   static const Color rankingFirst = Color(0xFFFCBE16);

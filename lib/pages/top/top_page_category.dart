@@ -7,6 +7,10 @@ final topPageCategoryProvider = StateProvider.autoDispose<TopPageCategory>((ref)
   return TopPageCategory.news;
 });
 
+final productListTabType = StateProvider.autoDispose<ProductListTabType>((ref) {
+  return ProductListTabType.normal;
+});
+
 enum TopPageCategory {
   news,
   brand,

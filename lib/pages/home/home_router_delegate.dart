@@ -4,6 +4,7 @@ import 'package:gr_clothing_flutter/pages/favorite/favorite_page.dart';
 import 'package:gr_clothing_flutter/pages/login/login_page.dart';
 import 'package:gr_clothing_flutter/pages/my_page/my_page.dart';
 import 'package:gr_clothing_flutter/pages/page_name.dart';
+import 'package:gr_clothing_flutter/pages/product_detail/product_detail_page.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page.dart';
 import 'package:gr_clothing_flutter/pages/webview/webview_page.dart';
 
@@ -24,7 +25,7 @@ class HomeRouterDelegate extends RouterDelegate<void>
     return Navigator(
       key: _nestedNavigatorKey,
       pages: [
-        MaterialPage(
+        const MaterialPage(
           arguments: PageName.topPage,
           child: TopPage(),
         ),
@@ -53,6 +54,11 @@ class HomeRouterDelegate extends RouterDelegate<void>
               initialUrl: "https://shop.gekirock.com/cart/",
             ),
           ),
+        if (ref.watch(showProductDetailProvider))
+          const MaterialPage(
+            arguments: PageName.productDetailPage,
+            child: ProductDetailPage(),
+          ),
       ],
       onPopPage: (route, result) {
         if (!route.didPop(result)) {
@@ -68,6 +74,9 @@ class HomeRouterDelegate extends RouterDelegate<void>
             break;
           case PageName.favoritePage:
             ref.read(showFavoritePageProvider.notifier).state = false;
+            break;
+          case PageName.productDetailPage:
+            ref.read(showProductDetailProvider.notifier).state = false;
             break;
           case PageName.cartPage:
             ref.read(showCartPageProvider.notifier).state = false;
@@ -87,5 +96,7 @@ class HomeRouterDelegate extends RouterDelegate<void>
 final showLoginPageProvider = StateProvider.autoDispose<bool>((ref) => false);
 final showMyPageProvider = StateProvider.autoDispose<bool>((ref) => false);
 final showFavoritePageProvider =
+    StateProvider.autoDispose<bool>((ref) => false);
+final showProductDetailProvider =
     StateProvider.autoDispose<bool>((ref) => false);
 final showCartPageProvider = StateProvider.autoDispose<bool>((ref) => false);
