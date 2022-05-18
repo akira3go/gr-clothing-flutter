@@ -1,4 +1,5 @@
 import 'package:gr_clothing_flutter/model/url_launcher/open_browser.dart';
+import 'package:gr_clothing_flutter/pages/top/top_page_category.dart';
 
 enum TopDrawerListItemType {
   newArrival,
@@ -21,6 +22,21 @@ extension TopDrawerListItemTypeExtension on TopDrawerListItemType {
         return "国内アーティストから探す";
       case TopDrawerListItemType.overseasArtist:
         return "海外アーティストから探す";
+    }
+  }
+
+  TopPageCategory get topPageCategory {
+    switch (this) {
+      case TopDrawerListItemType.newArrival:
+        return TopPageCategory.news;
+      case TopDrawerListItemType.category:
+        return TopPageCategory.category;
+      case TopDrawerListItemType.brand:
+        return TopPageCategory.brand;
+      case TopDrawerListItemType.japaneseArtist:
+        return TopPageCategory.artist;
+      case TopDrawerListItemType.overseasArtist:
+        return TopPageCategory.artist;
     }
   }
 }
@@ -63,19 +79,19 @@ extension TopDrawerItemTypeExtension on TopDrawerItemType {
       case TopDrawerItemType.aboutThisSite:
         return LinkUrl.aboutsThisSite;
       case TopDrawerItemType.inquiry:
-    return LinkUrl.contact;
+        return LinkUrl.contact;
       case TopDrawerItemType.specifiedTransactionLaw:
-      return LinkUrl.order;
+        return LinkUrl.order;
       case TopDrawerItemType.privacyPolicy:
-    return LinkUrl.privacyPolicy;
+        return LinkUrl.privacyPolicy;
       case TopDrawerItemType.beginnersGuide:
-    return LinkUrl.forBeginner;
+        return LinkUrl.forBeginner;
       case TopDrawerItemType.shippingHandling:
-    return LinkUrl.freightAndFee;
+        return LinkUrl.freightAndFee;
       case TopDrawerItemType.shibuya:
-    return LinkUrl.sibuya;
+        return LinkUrl.sibuya;
       case TopDrawerItemType.questions:
-    return LinkUrl.faq;
+        return LinkUrl.faq;
     }
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/assets.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:gr_clothing_flutter/model/url_launcher/open_browser.dart';
+import 'package:gr_clothing_flutter/pages/artist_list/artist_list_page.dart';
+import 'package:gr_clothing_flutter/pages/category_list/category_list_page.dart';
 import 'package:gr_clothing_flutter/pages/home/home_router_delegate.dart';
 import 'package:gr_clothing_flutter/pages/top/clothing_product_list_item.dart';
 import 'package:gr_clothing_flutter/pages/top/drawer/top_drawer.dart';
@@ -15,16 +17,17 @@ import 'package:gr_clothing_flutter/utils/widget/gradation_border.dart';
 import 'package:gr_clothing_flutter/utils/wrapper/gr_network_image.dart';
 import 'package:gr_clothing_flutter/model/news/clothing_product.dart';
 import 'package:gr_clothing_flutter/model/shared_preferences/preferences_provider.dart';
+import 'package:gr_clothing_flutter/pages/category_list/artist_search_dropdown.dart';
+
+final topPageScaffoldKey = GlobalKey<ScaffoldState>();
 
 class TopPage extends ConsumerWidget {
   const TopPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _scaffoldKey = GlobalKey<ScaffoldState>();
-    final state = ref.watch(newsViewModelProvider);
     return Scaffold(
-      key: _scaffoldKey,
+      key: topPageScaffoldKey,
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -33,11 +36,8 @@ class TopPage extends ConsumerWidget {
         leading: Container(
           margin: const EdgeInsets.only(left: 8),
           child: IconButton(
-            onPressed: () => _scaffoldKey.currentState!.openDrawer(),
-            icon: const Icon(
-              Icons.menu,
-              size: 30,
-            ),
+            onPressed: () => topPageScaffoldKey.currentState!.openDrawer(),
+            icon: const Icon(Icons.menu, size: 30),
           ),
         ),
         actions: [
@@ -53,15 +53,17 @@ class TopPage extends ConsumerWidget {
               ),
               padding: EdgeInsets.zero,
             ),
-          )
+          ),
         ],
       ),
-      drawer: const TopDrawer(),
+      drawer: const Drawer(
+        child: TopDrawer(),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           _headerTabWidget(ref),
-          _searchFieldWidget(),
+          _searchFieldWidget(ref),
           AspectRatio(
             aspectRatio: 4,
             child: SizedBox(
@@ -81,64 +83,7 @@ class TopPage extends ConsumerWidget {
           Expanded(
             child: Stack(
               children: [
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 10),
-                      GRNetworkImage(
-                        imageUrl:
-                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220427_ankimo-thumb-1200xauto-1045.jpg",
-                        fit: BoxFit.fill,
-                      ),
-                      SizedBox(
-                        height: 102,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: GRNetworkImage(
-                                imageUrl:
-                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/subciety_banner_20220430-thumb-1200xauto-1049.jpg",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Expanded(
-                              child: GRNetworkImage(
-                                imageUrl:
-                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/gs_20220430-thumb-1200xauto-1050.jpg",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 102,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: GRNetworkImage(
-                                imageUrl:
-                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_serenity-thumb-1200xauto-1047.jpg",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Expanded(
-                              child: GRNetworkImage(
-                                imageUrl:
-                                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_GALFY-thumb-1200xauto-1046.jpg",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      _latestNewsWidget(),
-                      _specialFeatureWidget(),
-                      _rankingListView(state.rankingItems),
-                      _productListWidget(context, ref),
-                    ],
-                  ),
-                ),
+                _mainWidget(context, ref),
                 GradationBorder(height: 10),
                 Positioned(
                   bottom: 0,
@@ -152,6 +97,76 @@ class TopPage extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Widget _mainWidget(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(newsViewModelProvider);
+    final selectedTab = ref.watch(topPageCategoryProvider);
+    switch (selectedTab) {
+      case TopPageCategory.category:
+        return const CategoryListPage();
+      case TopPageCategory.artist:
+        return const ArtistListPage();
+      default:
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 10),
+              GRNetworkImage(
+                imageUrl:
+                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220427_ankimo-thumb-1200xauto-1045.jpg",
+                fit: BoxFit.fill,
+              ),
+              SizedBox(
+                height: 102,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: GRNetworkImage(
+                        imageUrl:
+                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/subciety_banner_20220430-thumb-1200xauto-1049.jpg",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    Expanded(
+                      child: GRNetworkImage(
+                        imageUrl:
+                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/gs_20220430-thumb-1200xauto-1050.jpg",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 102,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: GRNetworkImage(
+                        imageUrl:
+                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_serenity-thumb-1200xauto-1047.jpg",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    Expanded(
+                      child: GRNetworkImage(
+                        imageUrl:
+                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_GALFY-thumb-1200xauto-1046.jpg",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              _latestNewsWidget(),
+              _specialFeatureWidget(),
+              _rankingListView(state.rankingItems),
+              _productListWidget(context, ref),
+            ],
+          ),
+        );
+    }
   }
 
   // header部分のタブ
@@ -255,55 +270,94 @@ class TopPage extends ConsumerWidget {
   }
 
   // 検索フィールド
-  Widget _searchFieldWidget() {
+  Widget _searchFieldWidget(WidgetRef ref) {
     return Container(
       margin: const EdgeInsets.fromLTRB(5, 20, 5, 10),
       height: 35,
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: ColorName.lightGray),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        right: BorderSide(
+                          color: ColorName.lightGray,
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: ColorName.backgroundLightGray,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(5),
+                          bottomLeft: Radius.circular(5),
+                        ),
+                      ),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.search_rounded,
+                          color: ColorName.lightGray,
+                        ),
+                        padding: EdgeInsets.zero,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  const Expanded(
+                    child: TextField(
+                      maxLines: 1,
+                      decoration: InputDecoration(
+                        enabledBorder: InputBorder.none,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                ],
+              ),
+            ),
+          ),
+          if (ref.watch(topPageCategoryProvider) == TopPageCategory.artist)
+            _artistLocationSelectWidget(ref),
+        ],
+      ),
+    );
+  }
+
+  /// 国内・海外の選択
+  Widget _artistLocationSelectWidget(WidgetRef ref) {
+    final items = ArtistSearchDropdown.values.map((value) {
+      return DropdownMenuItem(
+        child: Text(value.title, style: const TextStyle(fontSize: 11)),
+        value: value,
+      );
+    }).toList();
+    return Container(
+      width: 70,
       decoration: BoxDecoration(
         border: Border.all(color: ColorName.lightGray),
         borderRadius: BorderRadius.circular(5),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              border: Border(
-                right: BorderSide(
-                  color: ColorName.lightGray,
-                  width: 1,
-                ),
-              ),
-            ),
-            child: Container(
-              decoration: const BoxDecoration(
-                color: ColorName.backgroundLightGray,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(5),
-                  bottomLeft: Radius.circular(5),
-                ),
-              ),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.search_rounded,
-                  color: ColorName.lightGray,
-                ),
-                padding: EdgeInsets.zero,
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          const Expanded(
-            child: TextField(
-              maxLines: 1,
-              decoration: InputDecoration(
-                enabledBorder: InputBorder.none,
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-        ],
+      alignment: Alignment.centerLeft,
+      margin: const EdgeInsets.only(left: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: DropdownButton(
+        underline: Container(),
+        value: ref.watch(artistSearchDropdownProvider),
+        isExpanded: true,
+        items: items,
+        onChanged: (value) => ref
+            .read(artistSearchDropdownProvider.notifier)
+            .state = value as ArtistSearchDropdown,
       ),
     );
   }

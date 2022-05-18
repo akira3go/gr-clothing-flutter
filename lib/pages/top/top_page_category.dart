@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/assets.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 
-final topPageCategoryProvider = StateProvider.autoDispose<TopPageCategory>((ref) {
+final topPageCategoryProvider = StateProvider<TopPageCategory>((ref) {
   return TopPageCategory.news;
 });
 

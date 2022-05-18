@@ -19,4 +19,6 @@
     <color name="deepYellow">#F9EACC</color>
     <color name="productDetailTag">#C0CBCE</color>
     <color name="deepRed">#D8544F</color>
+    <color name="borderGray">#CCCCCC</color>
+    <color name="lightBlue">#79BACC</color>
 </resources>

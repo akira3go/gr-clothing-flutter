@@ -17,6 +17,9 @@ class ColorName {
   /// Color: #F9FBFD
   static const Color backgroundRankingGray = Color(0xFFF9FBFD);
 
+  /// Color: #CCCCCC
+  static const Color borderGray = Color(0xFFCCCCCC);
+
   /// Color: #C01148
   static const Color deepPink = Color(0xFFC01148);
 
@@ -31,6 +34,9 @@ class ColorName {
 
   /// Color: #E5336E
   static const Color japanese = Color(0xFFE5336E);
+
+  /// Color: #79BACC
+  static const Color lightBlue = Color(0xFF79BACC);
 
   /// Color: #999999
   static const Color lightGray = Color(0xFF999999);
