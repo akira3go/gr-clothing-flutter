@@ -204,6 +204,7 @@ class ProductDetailPage extends ConsumerWidget {
                     fontSize: 18,
                     decoration: TextDecoration.lineThrough,
                     decorationThickness: 3,
+                    fontFamily: FontFamily.roboto,
                   ),
                 ),
               Text(
@@ -211,7 +212,8 @@ class ProductDetailPage extends ConsumerWidget {
                 style: const TextStyle(
                   color: ColorName.deepRed,
                   fontWeight: FontWeight.w900,
-                  fontSize: 28,
+                  fontSize: 35,
+                  fontFamily: FontFamily.roboto,
                 ),
               ),
               const Text("（税込）", style: TextStyle(fontSize: 12)),

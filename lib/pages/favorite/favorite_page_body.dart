@@ -121,7 +121,11 @@ class FavoritePageBody extends ConsumerWidget {
                         ),
                         Text(
                           item.price.toJapanesePrice,
-                          style: const TextStyle(color: Colors.red),
+                          style: const TextStyle(
+                            color: Colors.red,
+                            fontFamily: FontFamily.roboto,
+                            fontSize: 18,
+                          ),
                         ),
                       ],
                     ),

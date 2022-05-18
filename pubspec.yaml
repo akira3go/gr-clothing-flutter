@@ -83,6 +83,10 @@ flutter:
         - asset: assets/fonts/hiragino_kaku_gothic_9.ttc
           weight: 900
 
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/roboto_regular.ttf
+
 flutter_gen:
   colors:
     inputs:

@@ -3,6 +3,7 @@ import 'package:gr_clothing_flutter/model/news/clothing_product.dart';
 import 'package:gr_clothing_flutter/utils/extensions/num_extension.dart';
 import 'package:gr_clothing_flutter/utils/wrapper/gr_network_image.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
 
 // ignore: must_be_immutable
 class TopPageRankingItem extends StatelessWidget {
@@ -81,6 +82,7 @@ class TopPageRankingItem extends StatelessWidget {
                     color: Colors.red,
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
+                    fontFamily: FontFamily.roboto,
                   ),
                 ),
               ),

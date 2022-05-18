@@ -47,8 +47,8 @@ class ClothingProductListItem extends StatelessWidget {
                     text: clothingProduct.salesPrice!.toPrice,
                     style: const TextStyle(
                       color: Colors.red,
-                      fontSize: 15,
-                      fontFamily: FontFamily.hiragino,
+                      fontSize: 18,
+                      fontFamily: FontFamily.roboto,
                       decoration: TextDecoration.lineThrough,
                       fontWeight: FontWeight.w700,
                       decorationThickness: 2,
@@ -70,8 +70,9 @@ class ClothingProductListItem extends StatelessWidget {
           clothingProduct.price.toPrice,
           style: const TextStyle(
             color: Colors.red,
-            fontSize: 15,
+            fontSize: 18,
             fontWeight: FontWeight.w700,
+            fontFamily: FontFamily.roboto,
           ),
         ),
         Text(
