@@ -5,6 +5,7 @@ import 'package:gr_clothing_flutter/pages/login/login_page.dart';
 import 'package:gr_clothing_flutter/pages/my_page/my_page.dart';
 import 'package:gr_clothing_flutter/pages/page_name.dart';
 import 'package:gr_clothing_flutter/pages/product_detail/product_detail_page.dart';
+import 'package:gr_clothing_flutter/pages/search/search_page.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page.dart';
 import 'package:gr_clothing_flutter/pages/webview/webview_page.dart';
 
@@ -59,6 +60,12 @@ class HomeRouterDelegate extends RouterDelegate<void>
             arguments: PageName.productDetailPage,
             child: ProductDetailPage(),
           ),
+        if (ref.watch(showSearchPageProvider))
+          const MaterialPage(
+            arguments: PageName.searchPage,
+            child: SearchPage(),
+            fullscreenDialog: true,
+          )
       ],
       onPopPage: (route, result) {
         if (!route.didPop(result)) {
@@ -81,6 +88,9 @@ class HomeRouterDelegate extends RouterDelegate<void>
           case PageName.cartPage:
             ref.read(showCartPageProvider.notifier).state = false;
             break;
+          case PageName.searchPage:
+            ref.read(showSearchPageProvider.notifier).state = false;
+            break;
           default:
             break;
         }
@@ -100,3 +110,4 @@ final showFavoritePageProvider =
 final showProductDetailProvider =
     StateProvider.autoDispose<bool>((ref) => false);
 final showCartPageProvider = StateProvider.autoDispose<bool>((ref) => false);
+final showSearchPageProvider = StateProvider.autoDispose<bool>((ref) => false);

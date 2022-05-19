@@ -6,6 +6,7 @@ import 'package:gr_clothing_flutter/model/url_launcher/open_browser.dart';
 import 'package:gr_clothing_flutter/pages/artist_list/artist_list_page.dart';
 import 'package:gr_clothing_flutter/pages/category_list/category_list_page.dart';
 import 'package:gr_clothing_flutter/pages/home/home_router_delegate.dart';
+import 'package:gr_clothing_flutter/pages/search/search_page_view_model.dart';
 import 'package:gr_clothing_flutter/pages/top/drawer/top_drawer.dart';
 import 'package:gr_clothing_flutter/pages/top/top_page_category.dart';
 import 'package:gr_clothing_flutter/utils/widget/gradation_border.dart';
@@ -201,52 +202,57 @@ class TopPage extends ConsumerWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: ColorName.lightGray),
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        right: BorderSide(
-                          color: ColorName.lightGray,
-                          width: 1,
-                        ),
-                      ),
-                    ),
-                    child: Container(
+            child: GestureDetector(
+              onTap: () {
+                ref.read(showSearchPageProvider.notifier).state = true;
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: ColorName.lightGray),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
                       decoration: const BoxDecoration(
-                        color: ColorName.backgroundLightGray,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(5),
-                          bottomLeft: Radius.circular(5),
+                        border: Border(
+                          right: BorderSide(
+                            color: ColorName.lightGray,
+                            width: 1,
+                          ),
                         ),
                       ),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
+                      child: Container(
+                        width: 50,
+                        height: 70,
+                        decoration: const BoxDecoration(
+                          color: ColorName.backgroundLightGray,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(5),
+                            bottomLeft: Radius.circular(5),
+                          ),
+                        ),
+                        child: const Icon(
                           Icons.search_rounded,
                           color: ColorName.lightGray,
                         ),
-                        padding: EdgeInsets.zero,
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  const Expanded(
-                    child: TextField(
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                        enabledBorder: InputBorder.none,
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          ref.watch(searchPageViewModel
+                              .select((value) => value.keyword)),
+                          maxLines: 1,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                ],
+                    const SizedBox(width: 10),
+                  ],
+                ),
               ),
             ),
           ),

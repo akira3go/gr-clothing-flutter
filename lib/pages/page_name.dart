@@ -6,4 +6,5 @@ enum PageName {
   favoritePage,
   cartPage,
   productDetailPage,
+  searchPage,
 }
