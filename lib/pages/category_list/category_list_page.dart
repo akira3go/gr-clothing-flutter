@@ -72,6 +72,7 @@ class CategoryListPage extends ConsumerWidget {
                 );
               },
             ),
+            const SizedBox(height: 50),
           ],
         ),
       ),

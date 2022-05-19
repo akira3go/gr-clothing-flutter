@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gr_clothing_flutter/pages/category_list/category_list_page.dart';
 import 'package:gr_clothing_flutter/pages/favorite/favorite_page.dart';
 import 'package:gr_clothing_flutter/pages/login/login_page.dart';
 import 'package:gr_clothing_flutter/pages/my_page/my_page.dart';

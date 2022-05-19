@@ -1,12 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:gr_clothing_flutter/model/news/clothing_product.dart';
 import 'package:gr_clothing_flutter/pages/product_detail/product_detail_data_table.dart';
 import 'package:gr_clothing_flutter/pages/product_detail/product_detail_order_list.dart';
 import 'package:gr_clothing_flutter/pages/product_detail/product_detail_relative_items.dart';
 import 'package:gr_clothing_flutter/pages/product_detail/product_detail_view_model.dart';
-import 'package:gr_clothing_flutter/pages/top/clothing_product_list_item.dart';
 import 'package:gr_clothing_flutter/utils/wrapper/gr_network_image.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:gr_clothing_flutter/utils/extensions/num_extension.dart';

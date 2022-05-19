@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/assets.gen.dart';
@@ -78,7 +77,7 @@ class TopPage extends ConsumerWidget {
           Expanded(
             child: Stack(
               children: [
-                _mainWidget(context, ref),
+                _mainWidget(ref.watch(topPageCategoryProvider)),
                 GradationBorder(height: 10),
                 Positioned(
                   bottom: 0,
@@ -92,76 +91,6 @@ class TopPage extends ConsumerWidget {
         ],
       ),
     );
-  }
-
-  Widget _mainWidget(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(newsViewModelProvider);
-    final selectedTab = ref.watch(topPageCategoryProvider);
-    switch (selectedTab) {
-      case TopPageCategory.category:
-        return const CategoryListPage();
-      case TopPageCategory.artist:
-        return const ArtistListPage();
-      default:
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 10),
-              GRNetworkImage(
-                imageUrl:
-                    "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220427_ankimo-thumb-1200xauto-1045.jpg",
-                fit: BoxFit.fill,
-              ),
-              SizedBox(
-                height: 102,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: GRNetworkImage(
-                        imageUrl:
-                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/subciety_banner_20220430-thumb-1200xauto-1049.jpg",
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    Expanded(
-                      child: GRNetworkImage(
-                        imageUrl:
-                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/gs_20220430-thumb-1200xauto-1050.jpg",
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 102,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: GRNetworkImage(
-                        imageUrl:
-                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_serenity-thumb-1200xauto-1047.jpg",
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    Expanded(
-                      child: GRNetworkImage(
-                        imageUrl:
-                            "https://shop.gekirock.com/content/banner/assets_c/2022/04/20220428_GALFY-thumb-1200xauto-1046.jpg",
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              _latestNewsWidget(),
-              _specialFeatureWidget(),
-              _rankingListView(state.rankingItems),
-              _productListWidget(context, ref),
-            ],
-          ),
-        );
-    }
   }
 
   // header部分のタブ

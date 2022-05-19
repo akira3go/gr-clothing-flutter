@@ -57,9 +57,11 @@ class TopDrawer extends ConsumerWidget {
         return GestureDetector(
           onTap: () {
             Navigator.of(context).pop();
-            ref.read(topPageCategoryProvider.notifier).state =
-                itemType.topPageCategory;
             switch (itemType) {
+              case TopDrawerListItemType.category:
+                ref.read(topPageCategoryProvider.notifier).state =
+                    itemType.topPageCategory;
+                break;
               case TopDrawerListItemType.japaneseArtist:
                 ref.read(artistSearchDropdownProvider.notifier).state =
                     ArtistSearchDropdown.japanese;
