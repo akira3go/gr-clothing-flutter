@@ -5,7 +5,8 @@ import 'package:gr_clothing_flutter/model/news/clothing_product.dart';
 import 'package:gr_clothing_flutter/pages/top/clothing_product_list_item.dart';
 
 class ProductDetailRelativeItems extends StatelessWidget {
-  const ProductDetailRelativeItems({Key? key, required this.state}) : super(key: key);
+  const ProductDetailRelativeItems({Key? key, required this.state})
+      : super(key: key);
 
   final ProductDetailState state;
 

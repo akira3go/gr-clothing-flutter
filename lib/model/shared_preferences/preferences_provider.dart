@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/model/shared_preferences/preferences.dart';
 
-final preferencesProvider = StateNotifierProvider<PreferencesStateNotifier, Preferences>((ref) {
+final preferencesProvider =
+    StateNotifierProvider<PreferencesStateNotifier, Preferences>((ref) {
   return PreferencesStateNotifier(Preferences(
     isLoggedIn: PreferencesKey.isLoggedIn.prefValue,
   ));

@@ -16,7 +16,7 @@ class SearchPageState with _$SearchPageState {
     required DisplaySort displaySort,
     required DisplayItemsCount displayItemsCount,
     @Default(false) bool includeSoldOut,
-    @Default(false)  bool includeVideoPosting,
+    @Default(false) bool includeVideoPosting,
   }) = _SearchPageState;
 }
 

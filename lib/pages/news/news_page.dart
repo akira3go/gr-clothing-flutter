@@ -73,7 +73,8 @@ class NewsPage extends ConsumerWidget {
   }
 
   // ニュース・特集
-  Widget _carouselImageListWidget(BuildContext context, String title, List<String> imageList) {
+  Widget _carouselImageListWidget(
+      BuildContext context, String title, List<String> imageList) {
     final width = MediaQuery.of(context).size.width - 40;
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 10),

@@ -58,9 +58,9 @@ class ProductSizeEnumConverter implements JsonConverter<ProductSize?, String?> {
 
   @override
   ProductSize? fromJson(String? json) => EnumToString.fromString(
-    ProductSize.values,
-    json ?? '',
-  );
+        ProductSize.values,
+        json ?? '',
+      );
 
   @override
   String? toJson(ProductSize? object) =>

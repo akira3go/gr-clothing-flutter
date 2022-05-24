@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/model/category_list/category_list_item.dart';
 
-final categoryListPageViewModelProvider = StateNotifierProvider.autoDispose<CategoryListPageViewModel, List<CategoryListItem>>((ref) {
+final categoryListPageViewModelProvider = StateNotifierProvider.autoDispose<
+    CategoryListPageViewModel, List<CategoryListItem>>((ref) {
   final state = [
     CategoryListItem(category: 'ロングスリーブ', productsCount: 956),
     CategoryListItem(category: '7分袖', productsCount: 86),

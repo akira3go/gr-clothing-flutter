@@ -19,16 +19,15 @@ class WebviewPage extends ConsumerWidget {
         initialUrl: initialUrl,
         javascriptMode: JavascriptMode.unrestricted,
         navigationDelegate: (request) {
-          if (!request.url.startsWith("https://shop.gekirock.com/cart/") && !request.url.startsWith("https://shop.gekirock.com/shopping/") ) {
+          if (!request.url.startsWith("https://shop.gekirock.com/cart/") &&
+              !request.url.startsWith("https://shop.gekirock.com/shopping/")) {
             ref.read(showCartPageProvider.notifier).state = false;
             return NavigationDecision.prevent;
           }
           return NavigationDecision.navigate;
         },
         onPageFinished: (_) {
-          ref
-              .read(isLoadingProvider.notifier)
-              .state = false;
+          ref.read(isLoadingProvider.notifier).state = false;
         },
       ),
     ];
@@ -37,11 +36,12 @@ class WebviewPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Assets.images.logoIcon.image(height: 51, width: 114),
-      ),
-      body: Stack(children: stack,)
-    );
+        appBar: AppBar(
+          centerTitle: true,
+          title: Assets.images.logoIcon.image(height: 51, width: 114),
+        ),
+        body: Stack(
+          children: stack,
+        ));
   }
 }

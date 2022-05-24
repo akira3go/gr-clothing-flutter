@@ -27,14 +27,11 @@ class GRClothingApp extends ConsumerWidget {
         primarySwatch: Colors.blue,
         fontFamily: FontFamily.hiragino,
         appBarTheme: const AppBarTheme(
-          foregroundColor: Colors.white,
-          backgroundColor: ColorName.skyBlue,
-          shadowColor: Colors.transparent,
-          elevation: 0.0
-        ),
-        buttonTheme: const ButtonThemeData(
-          padding: EdgeInsets.zero
-        ),
+            foregroundColor: Colors.white,
+            backgroundColor: ColorName.skyBlue,
+            shadowColor: Colors.transparent,
+            elevation: 0.0),
+        buttonTheme: const ButtonThemeData(padding: EdgeInsets.zero),
       ),
       home: KeyboardDismissOnTap(child: _homeWidget()),
       // hidden the debug label.
@@ -43,15 +40,16 @@ class GRClothingApp extends ConsumerWidget {
   }
 
   Widget _homeWidget() {
-    final topPage = Consumer(builder: (context, ref, widget) {
-      return Router(routerDelegate: HomeRouterDelegate(ref));
-    },);
+    final topPage = Consumer(
+      builder: (context, ref, widget) {
+        return Router(routerDelegate: HomeRouterDelegate(ref));
+      },
+    );
     if (kDebugMode) {
       return Banner(
-        message: "GekiClothing",
-        location: BannerLocation.topStart,
-        child: topPage
-      );
+          message: "GekiClothing",
+          location: BannerLocation.topStart,
+          child: topPage);
     } else {
       return topPage;
     }
