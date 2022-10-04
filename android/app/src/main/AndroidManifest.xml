@@ -12,7 +12,7 @@
         </intent>
     </queries>
    <application
-        android:label="激Clothing"
+        android:label="GEKIROCK CLOTHING"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
