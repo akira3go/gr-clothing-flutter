@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gr_clothing_flutter">
+    package="com.gekirock.app.clothing">
    <application
         android:label="激Clothing"
         android:name="${applicationName}"

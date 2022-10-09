@@ -1,4 +1,4 @@
-package com.gr_clothing_flutter
+package com.gekirock.app.clothing
 
 import io.flutter.embedding.android.FlutterActivity
 
