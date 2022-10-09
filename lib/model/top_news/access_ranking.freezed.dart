@@ -65,38 +65,38 @@ class _$AccessRankingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AccessRankingCopyWith<$Res>
+abstract class _$$_AccessRankingCopyWith<$Res>
     implements $AccessRankingCopyWith<$Res> {
-  factory _$AccessRankingCopyWith(
-          _AccessRanking value, $Res Function(_AccessRanking) then) =
-      __$AccessRankingCopyWithImpl<$Res>;
+  factory _$$_AccessRankingCopyWith(
+          _$_AccessRanking value, $Res Function(_$_AccessRanking) then) =
+      __$$_AccessRankingCopyWithImpl<$Res>;
   @override
   $Res call({List<RankingItem> japanese, List<RankingItem> overseas});
 }
 
 /// @nodoc
-class __$AccessRankingCopyWithImpl<$Res>
+class __$$_AccessRankingCopyWithImpl<$Res>
     extends _$AccessRankingCopyWithImpl<$Res>
-    implements _$AccessRankingCopyWith<$Res> {
-  __$AccessRankingCopyWithImpl(
-      _AccessRanking _value, $Res Function(_AccessRanking) _then)
-      : super(_value, (v) => _then(v as _AccessRanking));
+    implements _$$_AccessRankingCopyWith<$Res> {
+  __$$_AccessRankingCopyWithImpl(
+      _$_AccessRanking _value, $Res Function(_$_AccessRanking) _then)
+      : super(_value, (v) => _then(v as _$_AccessRanking));
 
   @override
-  _AccessRanking get _value => super._value as _AccessRanking;
+  _$_AccessRanking get _value => super._value as _$_AccessRanking;
 
   @override
   $Res call({
     Object? japanese = freezed,
     Object? overseas = freezed,
   }) {
-    return _then(_AccessRanking(
+    return _then(_$_AccessRanking(
       japanese: japanese == freezed
-          ? _value.japanese
+          ? _value._japanese
           : japanese // ignore: cast_nullable_to_non_nullable
               as List<RankingItem>,
       overseas: overseas == freezed
-          ? _value.overseas
+          ? _value._overseas
           : overseas // ignore: cast_nullable_to_non_nullable
               as List<RankingItem>,
     ));
@@ -138,22 +138,22 @@ class _$_AccessRanking implements _AccessRanking {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AccessRanking &&
-            const DeepCollectionEquality().equals(other.japanese, japanese) &&
-            const DeepCollectionEquality().equals(other.overseas, overseas));
+            other is _$_AccessRanking &&
+            const DeepCollectionEquality().equals(other._japanese, _japanese) &&
+            const DeepCollectionEquality().equals(other._overseas, _overseas));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(japanese),
-      const DeepCollectionEquality().hash(overseas));
+      const DeepCollectionEquality().hash(_japanese),
+      const DeepCollectionEquality().hash(_overseas));
 
   @JsonKey(ignore: true)
   @override
-  _$AccessRankingCopyWith<_AccessRanking> get copyWith =>
-      __$AccessRankingCopyWithImpl<_AccessRanking>(this, _$identity);
+  _$$_AccessRankingCopyWith<_$_AccessRanking> get copyWith =>
+      __$$_AccessRankingCopyWithImpl<_$_AccessRanking>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -175,6 +175,6 @@ abstract class _AccessRanking implements AccessRanking {
   List<RankingItem> get overseas => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AccessRankingCopyWith<_AccessRanking> get copyWith =>
+  _$$_AccessRankingCopyWith<_$_AccessRanking> get copyWith =>
       throw _privateConstructorUsedError;
 }

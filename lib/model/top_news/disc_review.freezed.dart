@@ -64,36 +64,37 @@ class _$DiscReviewCopyWithImpl<$Res> implements $DiscReviewCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DiscReviewCopyWith<$Res> implements $DiscReviewCopyWith<$Res> {
-  factory _$DiscReviewCopyWith(
-          _DiscReview value, $Res Function(_DiscReview) then) =
-      __$DiscReviewCopyWithImpl<$Res>;
+abstract class _$$_DiscReviewCopyWith<$Res>
+    implements $DiscReviewCopyWith<$Res> {
+  factory _$$_DiscReviewCopyWith(
+          _$_DiscReview value, $Res Function(_$_DiscReview) then) =
+      __$$_DiscReviewCopyWithImpl<$Res>;
   @override
   $Res call({List<DiscReviewItem> japanese, List<DiscReviewItem> overseas});
 }
 
 /// @nodoc
-class __$DiscReviewCopyWithImpl<$Res> extends _$DiscReviewCopyWithImpl<$Res>
-    implements _$DiscReviewCopyWith<$Res> {
-  __$DiscReviewCopyWithImpl(
-      _DiscReview _value, $Res Function(_DiscReview) _then)
-      : super(_value, (v) => _then(v as _DiscReview));
+class __$$_DiscReviewCopyWithImpl<$Res> extends _$DiscReviewCopyWithImpl<$Res>
+    implements _$$_DiscReviewCopyWith<$Res> {
+  __$$_DiscReviewCopyWithImpl(
+      _$_DiscReview _value, $Res Function(_$_DiscReview) _then)
+      : super(_value, (v) => _then(v as _$_DiscReview));
 
   @override
-  _DiscReview get _value => super._value as _DiscReview;
+  _$_DiscReview get _value => super._value as _$_DiscReview;
 
   @override
   $Res call({
     Object? japanese = freezed,
     Object? overseas = freezed,
   }) {
-    return _then(_DiscReview(
+    return _then(_$_DiscReview(
       japanese: japanese == freezed
-          ? _value.japanese
+          ? _value._japanese
           : japanese // ignore: cast_nullable_to_non_nullable
               as List<DiscReviewItem>,
       overseas: overseas == freezed
-          ? _value.overseas
+          ? _value._overseas
           : overseas // ignore: cast_nullable_to_non_nullable
               as List<DiscReviewItem>,
     ));
@@ -135,22 +136,22 @@ class _$_DiscReview implements _DiscReview {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DiscReview &&
-            const DeepCollectionEquality().equals(other.japanese, japanese) &&
-            const DeepCollectionEquality().equals(other.overseas, overseas));
+            other is _$_DiscReview &&
+            const DeepCollectionEquality().equals(other._japanese, _japanese) &&
+            const DeepCollectionEquality().equals(other._overseas, _overseas));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(japanese),
-      const DeepCollectionEquality().hash(overseas));
+      const DeepCollectionEquality().hash(_japanese),
+      const DeepCollectionEquality().hash(_overseas));
 
   @JsonKey(ignore: true)
   @override
-  _$DiscReviewCopyWith<_DiscReview> get copyWith =>
-      __$DiscReviewCopyWithImpl<_DiscReview>(this, _$identity);
+  _$$_DiscReviewCopyWith<_$_DiscReview> get copyWith =>
+      __$$_DiscReviewCopyWithImpl<_$_DiscReview>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -172,6 +173,6 @@ abstract class _DiscReview implements DiscReview {
   List<DiscReviewItem> get overseas => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DiscReviewCopyWith<_DiscReview> get copyWith =>
+  _$$_DiscReviewCopyWith<_$_DiscReview> get copyWith =>
       throw _privateConstructorUsedError;
 }

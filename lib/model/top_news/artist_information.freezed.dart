@@ -73,26 +73,26 @@ class _$ArtistInformationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$ArtistInformationCopyWith<$Res>
+abstract class _$$_ArtistInformationCopyWith<$Res>
     implements $ArtistInformationCopyWith<$Res> {
-  factory _$ArtistInformationCopyWith(
-          _ArtistInformation value, $Res Function(_ArtistInformation) then) =
-      __$ArtistInformationCopyWithImpl<$Res>;
+  factory _$$_ArtistInformationCopyWith(_$_ArtistInformation value,
+          $Res Function(_$_ArtistInformation) then) =
+      __$$_ArtistInformationCopyWithImpl<$Res>;
   @override
   $Res call(
       {String name, @LocationEnumConverter() Location? location, String link});
 }
 
 /// @nodoc
-class __$ArtistInformationCopyWithImpl<$Res>
+class __$$_ArtistInformationCopyWithImpl<$Res>
     extends _$ArtistInformationCopyWithImpl<$Res>
-    implements _$ArtistInformationCopyWith<$Res> {
-  __$ArtistInformationCopyWithImpl(
-      _ArtistInformation _value, $Res Function(_ArtistInformation) _then)
-      : super(_value, (v) => _then(v as _ArtistInformation));
+    implements _$$_ArtistInformationCopyWith<$Res> {
+  __$$_ArtistInformationCopyWithImpl(
+      _$_ArtistInformation _value, $Res Function(_$_ArtistInformation) _then)
+      : super(_value, (v) => _then(v as _$_ArtistInformation));
 
   @override
-  _ArtistInformation get _value => super._value as _ArtistInformation;
+  _$_ArtistInformation get _value => super._value as _$_ArtistInformation;
 
   @override
   $Res call({
@@ -100,7 +100,7 @@ class __$ArtistInformationCopyWithImpl<$Res>
     Object? location = freezed,
     Object? link = freezed,
   }) {
-    return _then(_ArtistInformation(
+    return _then(_$_ArtistInformation(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -145,7 +145,7 @@ class _$_ArtistInformation implements _ArtistInformation {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ArtistInformation &&
+            other is _$_ArtistInformation &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.location, location) &&
             const DeepCollectionEquality().equals(other.link, link));
@@ -161,8 +161,9 @@ class _$_ArtistInformation implements _ArtistInformation {
 
   @JsonKey(ignore: true)
   @override
-  _$ArtistInformationCopyWith<_ArtistInformation> get copyWith =>
-      __$ArtistInformationCopyWithImpl<_ArtistInformation>(this, _$identity);
+  _$$_ArtistInformationCopyWith<_$_ArtistInformation> get copyWith =>
+      __$$_ArtistInformationCopyWithImpl<_$_ArtistInformation>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -188,6 +189,6 @@ abstract class _ArtistInformation implements ArtistInformation {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ArtistInformationCopyWith<_ArtistInformation> get copyWith =>
+  _$$_ArtistInformationCopyWith<_$_ArtistInformation> get copyWith =>
       throw _privateConstructorUsedError;
 }

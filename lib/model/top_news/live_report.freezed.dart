@@ -94,10 +94,11 @@ class _$LiveReportCopyWithImpl<$Res> implements $LiveReportCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LiveReportCopyWith<$Res> implements $LiveReportCopyWith<$Res> {
-  factory _$LiveReportCopyWith(
-          _LiveReport value, $Res Function(_LiveReport) then) =
-      __$LiveReportCopyWithImpl<$Res>;
+abstract class _$$_LiveReportCopyWith<$Res>
+    implements $LiveReportCopyWith<$Res> {
+  factory _$$_LiveReportCopyWith(
+          _$_LiveReport value, $Res Function(_$_LiveReport) then) =
+      __$$_LiveReportCopyWithImpl<$Res>;
   @override
   $Res call(
       {String image,
@@ -109,14 +110,14 @@ abstract class _$LiveReportCopyWith<$Res> implements $LiveReportCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LiveReportCopyWithImpl<$Res> extends _$LiveReportCopyWithImpl<$Res>
-    implements _$LiveReportCopyWith<$Res> {
-  __$LiveReportCopyWithImpl(
-      _LiveReport _value, $Res Function(_LiveReport) _then)
-      : super(_value, (v) => _then(v as _LiveReport));
+class __$$_LiveReportCopyWithImpl<$Res> extends _$LiveReportCopyWithImpl<$Res>
+    implements _$$_LiveReportCopyWith<$Res> {
+  __$$_LiveReportCopyWithImpl(
+      _$_LiveReport _value, $Res Function(_$_LiveReport) _then)
+      : super(_value, (v) => _then(v as _$_LiveReport));
 
   @override
-  _LiveReport get _value => super._value as _LiveReport;
+  _$_LiveReport get _value => super._value as _$_LiveReport;
 
   @override
   $Res call({
@@ -127,7 +128,7 @@ class __$LiveReportCopyWithImpl<$Res> extends _$LiveReportCopyWithImpl<$Res>
     Object? placeName = freezed,
     Object? link = freezed,
   }) {
-    return _then(_LiveReport(
+    return _then(_$_LiveReport(
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -192,7 +193,7 @@ class _$_LiveReport implements _LiveReport {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LiveReport &&
+            other is _$_LiveReport &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality()
                 .equals(other.isFavorite, isFavorite) &&
@@ -215,8 +216,8 @@ class _$_LiveReport implements _LiveReport {
 
   @JsonKey(ignore: true)
   @override
-  _$LiveReportCopyWith<_LiveReport> get copyWith =>
-      __$LiveReportCopyWithImpl<_LiveReport>(this, _$identity);
+  _$$_LiveReportCopyWith<_$_LiveReport> get copyWith =>
+      __$$_LiveReportCopyWithImpl<_$_LiveReport>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -250,6 +251,6 @@ abstract class _LiveReport implements LiveReport {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LiveReportCopyWith<_LiveReport> get copyWith =>
+  _$$_LiveReportCopyWith<_$_LiveReport> get copyWith =>
       throw _privateConstructorUsedError;
 }

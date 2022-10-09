@@ -176,9 +176,10 @@ class _$TopNewsCopyWithImpl<$Res> implements $TopNewsCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$TopNewsCopyWith<$Res> implements $TopNewsCopyWith<$Res> {
-  factory _$TopNewsCopyWith(_TopNews value, $Res Function(_TopNews) then) =
-      __$TopNewsCopyWithImpl<$Res>;
+abstract class _$$_TopNewsCopyWith<$Res> implements $TopNewsCopyWith<$Res> {
+  factory _$$_TopNewsCopyWith(
+          _$_TopNews value, $Res Function(_$_TopNews) then) =
+      __$$_TopNewsCopyWithImpl<$Res>;
   @override
   $Res call(
       {List<TopImage> topImages,
@@ -205,13 +206,13 @@ abstract class _$TopNewsCopyWith<$Res> implements $TopNewsCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$TopNewsCopyWithImpl<$Res> extends _$TopNewsCopyWithImpl<$Res>
-    implements _$TopNewsCopyWith<$Res> {
-  __$TopNewsCopyWithImpl(_TopNews _value, $Res Function(_TopNews) _then)
-      : super(_value, (v) => _then(v as _TopNews));
+class __$$_TopNewsCopyWithImpl<$Res> extends _$TopNewsCopyWithImpl<$Res>
+    implements _$$_TopNewsCopyWith<$Res> {
+  __$$_TopNewsCopyWithImpl(_$_TopNews _value, $Res Function(_$_TopNews) _then)
+      : super(_value, (v) => _then(v as _$_TopNews));
 
   @override
-  _TopNews get _value => super._value as _TopNews;
+  _$_TopNews get _value => super._value as _$_TopNews;
 
   @override
   $Res call({
@@ -230,17 +231,17 @@ class __$TopNewsCopyWithImpl<$Res> extends _$TopNewsCopyWithImpl<$Res>
     Object? liveInformation = freezed,
     Object? releaseInformation = freezed,
   }) {
-    return _then(_TopNews(
+    return _then(_$_TopNews(
       topImages: topImages == freezed
-          ? _value.topImages
+          ? _value._topImages
           : topImages // ignore: cast_nullable_to_non_nullable
               as List<TopImage>,
       latestUpdateNews: latestUpdateNews == freezed
-          ? _value.latestUpdateNews
+          ? _value._latestUpdateNews
           : latestUpdateNews // ignore: cast_nullable_to_non_nullable
               as List<News>,
       headlineNews: headlineNews == freezed
-          ? _value.headlineNews
+          ? _value._headlineNews
           : headlineNews // ignore: cast_nullable_to_non_nullable
               as List<News>,
       accessRanking: accessRanking == freezed
@@ -248,15 +249,15 @@ class __$TopNewsCopyWithImpl<$Res> extends _$TopNewsCopyWithImpl<$Res>
           : accessRanking // ignore: cast_nullable_to_non_nullable
               as AccessRanking,
       artistColumnList: artistColumnList == freezed
-          ? _value.artistColumnList
+          ? _value._artistColumnList
           : artistColumnList // ignore: cast_nullable_to_non_nullable
               as List<ArtistColumn>,
       interviewList: interviewList == freezed
-          ? _value.interviewList
+          ? _value._interviewList
           : interviewList // ignore: cast_nullable_to_non_nullable
               as List<Interview>,
       specialFeatures: specialFeatures == freezed
-          ? _value.specialFeatures
+          ? _value._specialFeatures
           : specialFeatures // ignore: cast_nullable_to_non_nullable
               as List<SpecialFeature>,
       freeMagazine: freeMagazine == freezed
@@ -264,15 +265,15 @@ class __$TopNewsCopyWithImpl<$Res> extends _$TopNewsCopyWithImpl<$Res>
           : freeMagazine // ignore: cast_nullable_to_non_nullable
               as FreeMagazine,
       musicVideoList: musicVideoList == freezed
-          ? _value.musicVideoList
+          ? _value._musicVideoList
           : musicVideoList // ignore: cast_nullable_to_non_nullable
               as List<MusicVideo>,
       videoMessages: videoMessages == freezed
-          ? _value.videoMessages
+          ? _value._videoMessages
           : videoMessages // ignore: cast_nullable_to_non_nullable
               as List<VideoMessage>,
       liveReports: liveReports == freezed
-          ? _value.liveReports
+          ? _value._liveReports
           : liveReports // ignore: cast_nullable_to_non_nullable
               as List<LiveReport>,
       discReview: discReview == freezed
@@ -280,11 +281,11 @@ class __$TopNewsCopyWithImpl<$Res> extends _$TopNewsCopyWithImpl<$Res>
           : discReview // ignore: cast_nullable_to_non_nullable
               as DiscReview,
       liveInformation: liveInformation == freezed
-          ? _value.liveInformation
+          ? _value._liveInformation
           : liveInformation // ignore: cast_nullable_to_non_nullable
               as List<DailyInformation>,
       releaseInformation: releaseInformation == freezed
-          ? _value.releaseInformation
+          ? _value._releaseInformation
           : releaseInformation // ignore: cast_nullable_to_non_nullable
               as List<DailyInformation>,
     ));
@@ -416,59 +417,60 @@ class _$_TopNews implements _TopNews {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TopNews &&
-            const DeepCollectionEquality().equals(other.topImages, topImages) &&
+            other is _$_TopNews &&
             const DeepCollectionEquality()
-                .equals(other.latestUpdateNews, latestUpdateNews) &&
+                .equals(other._topImages, _topImages) &&
             const DeepCollectionEquality()
-                .equals(other.headlineNews, headlineNews) &&
+                .equals(other._latestUpdateNews, _latestUpdateNews) &&
+            const DeepCollectionEquality()
+                .equals(other._headlineNews, _headlineNews) &&
             const DeepCollectionEquality()
                 .equals(other.accessRanking, accessRanking) &&
             const DeepCollectionEquality()
-                .equals(other.artistColumnList, artistColumnList) &&
+                .equals(other._artistColumnList, _artistColumnList) &&
             const DeepCollectionEquality()
-                .equals(other.interviewList, interviewList) &&
+                .equals(other._interviewList, _interviewList) &&
             const DeepCollectionEquality()
-                .equals(other.specialFeatures, specialFeatures) &&
+                .equals(other._specialFeatures, _specialFeatures) &&
             const DeepCollectionEquality()
                 .equals(other.freeMagazine, freeMagazine) &&
             const DeepCollectionEquality()
-                .equals(other.musicVideoList, musicVideoList) &&
+                .equals(other._musicVideoList, _musicVideoList) &&
             const DeepCollectionEquality()
-                .equals(other.videoMessages, videoMessages) &&
+                .equals(other._videoMessages, _videoMessages) &&
             const DeepCollectionEquality()
-                .equals(other.liveReports, liveReports) &&
+                .equals(other._liveReports, _liveReports) &&
             const DeepCollectionEquality()
                 .equals(other.discReview, discReview) &&
             const DeepCollectionEquality()
-                .equals(other.liveInformation, liveInformation) &&
+                .equals(other._liveInformation, _liveInformation) &&
             const DeepCollectionEquality()
-                .equals(other.releaseInformation, releaseInformation));
+                .equals(other._releaseInformation, _releaseInformation));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(topImages),
-      const DeepCollectionEquality().hash(latestUpdateNews),
-      const DeepCollectionEquality().hash(headlineNews),
+      const DeepCollectionEquality().hash(_topImages),
+      const DeepCollectionEquality().hash(_latestUpdateNews),
+      const DeepCollectionEquality().hash(_headlineNews),
       const DeepCollectionEquality().hash(accessRanking),
-      const DeepCollectionEquality().hash(artistColumnList),
-      const DeepCollectionEquality().hash(interviewList),
-      const DeepCollectionEquality().hash(specialFeatures),
+      const DeepCollectionEquality().hash(_artistColumnList),
+      const DeepCollectionEquality().hash(_interviewList),
+      const DeepCollectionEquality().hash(_specialFeatures),
       const DeepCollectionEquality().hash(freeMagazine),
-      const DeepCollectionEquality().hash(musicVideoList),
-      const DeepCollectionEquality().hash(videoMessages),
-      const DeepCollectionEquality().hash(liveReports),
+      const DeepCollectionEquality().hash(_musicVideoList),
+      const DeepCollectionEquality().hash(_videoMessages),
+      const DeepCollectionEquality().hash(_liveReports),
       const DeepCollectionEquality().hash(discReview),
-      const DeepCollectionEquality().hash(liveInformation),
-      const DeepCollectionEquality().hash(releaseInformation));
+      const DeepCollectionEquality().hash(_liveInformation),
+      const DeepCollectionEquality().hash(_releaseInformation));
 
   @JsonKey(ignore: true)
   @override
-  _$TopNewsCopyWith<_TopNews> get copyWith =>
-      __$TopNewsCopyWithImpl<_TopNews>(this, _$identity);
+  _$$_TopNewsCopyWith<_$_TopNews> get copyWith =>
+      __$$_TopNewsCopyWithImpl<_$_TopNews>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -528,6 +530,6 @@ abstract class _TopNews implements TopNews {
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TopNewsCopyWith<_TopNews> get copyWith =>
+  _$$_TopNewsCopyWith<_$_TopNews> get copyWith =>
       throw _privateConstructorUsedError;
 }

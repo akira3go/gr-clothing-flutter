@@ -63,28 +63,30 @@ class _$TopImageCopyWithImpl<$Res> implements $TopImageCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$TopImageCopyWith<$Res> implements $TopImageCopyWith<$Res> {
-  factory _$TopImageCopyWith(_TopImage value, $Res Function(_TopImage) then) =
-      __$TopImageCopyWithImpl<$Res>;
+abstract class _$$_TopImageCopyWith<$Res> implements $TopImageCopyWith<$Res> {
+  factory _$$_TopImageCopyWith(
+          _$_TopImage value, $Res Function(_$_TopImage) then) =
+      __$$_TopImageCopyWithImpl<$Res>;
   @override
   $Res call({String image, String link});
 }
 
 /// @nodoc
-class __$TopImageCopyWithImpl<$Res> extends _$TopImageCopyWithImpl<$Res>
-    implements _$TopImageCopyWith<$Res> {
-  __$TopImageCopyWithImpl(_TopImage _value, $Res Function(_TopImage) _then)
-      : super(_value, (v) => _then(v as _TopImage));
+class __$$_TopImageCopyWithImpl<$Res> extends _$TopImageCopyWithImpl<$Res>
+    implements _$$_TopImageCopyWith<$Res> {
+  __$$_TopImageCopyWithImpl(
+      _$_TopImage _value, $Res Function(_$_TopImage) _then)
+      : super(_value, (v) => _then(v as _$_TopImage));
 
   @override
-  _TopImage get _value => super._value as _TopImage;
+  _$_TopImage get _value => super._value as _$_TopImage;
 
   @override
   $Res call({
     Object? image = freezed,
     Object? link = freezed,
   }) {
-    return _then(_TopImage(
+    return _then(_$_TopImage(
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -119,7 +121,7 @@ class _$_TopImage implements _TopImage {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TopImage &&
+            other is _$_TopImage &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality().equals(other.link, link));
   }
@@ -133,8 +135,8 @@ class _$_TopImage implements _TopImage {
 
   @JsonKey(ignore: true)
   @override
-  _$TopImageCopyWith<_TopImage> get copyWith =>
-      __$TopImageCopyWithImpl<_TopImage>(this, _$identity);
+  _$$_TopImageCopyWith<_$_TopImage> get copyWith =>
+      __$$_TopImageCopyWithImpl<_$_TopImage>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -154,6 +156,6 @@ abstract class _TopImage implements TopImage {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TopImageCopyWith<_TopImage> get copyWith =>
+  _$$_TopImageCopyWith<_$_TopImage> get copyWith =>
       throw _privateConstructorUsedError;
 }

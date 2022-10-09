@@ -7,4 +7,6 @@
     <color name="gray">#333333</color>
     <color name="backgroundLightGray">#F5F5F5</color>
     <color name="peoples">#FF8A65</color>
+    <color name="skyBlue">#3EBDE0</color>
+    <color name="skyDeepBlue">#249DBC</color>
 </resources>

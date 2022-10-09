@@ -115,11 +115,11 @@ class _$FreeMagazineCopyWithImpl<$Res> implements $FreeMagazineCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$FreeMagazineCopyWith<$Res>
+abstract class _$$_FreeMagazineCopyWith<$Res>
     implements $FreeMagazineCopyWith<$Res> {
-  factory _$FreeMagazineCopyWith(
-          _FreeMagazine value, $Res Function(_FreeMagazine) then) =
-      __$FreeMagazineCopyWithImpl<$Res>;
+  factory _$$_FreeMagazineCopyWith(
+          _$_FreeMagazine value, $Res Function(_$_FreeMagazine) then) =
+      __$$_FreeMagazineCopyWithImpl<$Res>;
   @override
   $Res call(
       {String firstImage,
@@ -134,14 +134,15 @@ abstract class _$FreeMagazineCopyWith<$Res>
 }
 
 /// @nodoc
-class __$FreeMagazineCopyWithImpl<$Res> extends _$FreeMagazineCopyWithImpl<$Res>
-    implements _$FreeMagazineCopyWith<$Res> {
-  __$FreeMagazineCopyWithImpl(
-      _FreeMagazine _value, $Res Function(_FreeMagazine) _then)
-      : super(_value, (v) => _then(v as _FreeMagazine));
+class __$$_FreeMagazineCopyWithImpl<$Res>
+    extends _$FreeMagazineCopyWithImpl<$Res>
+    implements _$$_FreeMagazineCopyWith<$Res> {
+  __$$_FreeMagazineCopyWithImpl(
+      _$_FreeMagazine _value, $Res Function(_$_FreeMagazine) _then)
+      : super(_value, (v) => _then(v as _$_FreeMagazine));
 
   @override
-  _FreeMagazine get _value => super._value as _FreeMagazine;
+  _$_FreeMagazine get _value => super._value as _$_FreeMagazine;
 
   @override
   $Res call({
@@ -155,7 +156,7 @@ class __$FreeMagazineCopyWithImpl<$Res> extends _$FreeMagazineCopyWithImpl<$Res>
     Object? year = freezed,
     Object? month = freezed,
   }) {
-    return _then(_FreeMagazine(
+    return _then(_$_FreeMagazine(
       firstImage: firstImage == freezed
           ? _value.firstImage
           : firstImage // ignore: cast_nullable_to_non_nullable
@@ -241,7 +242,7 @@ class _$_FreeMagazine implements _FreeMagazine {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FreeMagazine &&
+            other is _$_FreeMagazine &&
             const DeepCollectionEquality()
                 .equals(other.firstImage, firstImage) &&
             const DeepCollectionEquality()
@@ -274,8 +275,8 @@ class _$_FreeMagazine implements _FreeMagazine {
 
   @JsonKey(ignore: true)
   @override
-  _$FreeMagazineCopyWith<_FreeMagazine> get copyWith =>
-      __$FreeMagazineCopyWithImpl<_FreeMagazine>(this, _$identity);
+  _$$_FreeMagazineCopyWith<_$_FreeMagazine> get copyWith =>
+      __$$_FreeMagazineCopyWithImpl<_$_FreeMagazine>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -318,6 +319,6 @@ abstract class _FreeMagazine implements FreeMagazine {
   String get month => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$FreeMagazineCopyWith<_FreeMagazine> get copyWith =>
+  _$$_FreeMagazineCopyWith<_$_FreeMagazine> get copyWith =>
       throw _privateConstructorUsedError;
 }

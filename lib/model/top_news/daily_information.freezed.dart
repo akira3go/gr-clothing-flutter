@@ -65,38 +65,38 @@ class _$DailyInformationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DailyInformationCopyWith<$Res>
+abstract class _$$_DailyInformationCopyWith<$Res>
     implements $DailyInformationCopyWith<$Res> {
-  factory _$DailyInformationCopyWith(
-          _DailyInformation value, $Res Function(_DailyInformation) then) =
-      __$DailyInformationCopyWithImpl<$Res>;
+  factory _$$_DailyInformationCopyWith(
+          _$_DailyInformation value, $Res Function(_$_DailyInformation) then) =
+      __$$_DailyInformationCopyWithImpl<$Res>;
   @override
   $Res call({DateTime date, List<ArtistInformation> information});
 }
 
 /// @nodoc
-class __$DailyInformationCopyWithImpl<$Res>
+class __$$_DailyInformationCopyWithImpl<$Res>
     extends _$DailyInformationCopyWithImpl<$Res>
-    implements _$DailyInformationCopyWith<$Res> {
-  __$DailyInformationCopyWithImpl(
-      _DailyInformation _value, $Res Function(_DailyInformation) _then)
-      : super(_value, (v) => _then(v as _DailyInformation));
+    implements _$$_DailyInformationCopyWith<$Res> {
+  __$$_DailyInformationCopyWithImpl(
+      _$_DailyInformation _value, $Res Function(_$_DailyInformation) _then)
+      : super(_value, (v) => _then(v as _$_DailyInformation));
 
   @override
-  _DailyInformation get _value => super._value as _DailyInformation;
+  _$_DailyInformation get _value => super._value as _$_DailyInformation;
 
   @override
   $Res call({
     Object? date = freezed,
     Object? information = freezed,
   }) {
-    return _then(_DailyInformation(
+    return _then(_$_DailyInformation(
       date: date == freezed
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime,
       information: information == freezed
-          ? _value.information
+          ? _value._information
           : information // ignore: cast_nullable_to_non_nullable
               as List<ArtistInformation>,
     ));
@@ -131,10 +131,10 @@ class _$_DailyInformation implements _DailyInformation {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DailyInformation &&
+            other is _$_DailyInformation &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality()
-                .equals(other.information, information));
+                .equals(other._information, _information));
   }
 
   @JsonKey(ignore: true)
@@ -142,12 +142,12 @@ class _$_DailyInformation implements _DailyInformation {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(date),
-      const DeepCollectionEquality().hash(information));
+      const DeepCollectionEquality().hash(_information));
 
   @JsonKey(ignore: true)
   @override
-  _$DailyInformationCopyWith<_DailyInformation> get copyWith =>
-      __$DailyInformationCopyWithImpl<_DailyInformation>(this, _$identity);
+  _$$_DailyInformationCopyWith<_$_DailyInformation> get copyWith =>
+      __$$_DailyInformationCopyWithImpl<_$_DailyInformation>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -170,6 +170,6 @@ abstract class _DailyInformation implements DailyInformation {
   List<ArtistInformation> get information => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DailyInformationCopyWith<_DailyInformation> get copyWith =>
+  _$$_DailyInformationCopyWith<_$_DailyInformation> get copyWith =>
       throw _privateConstructorUsedError;
 }

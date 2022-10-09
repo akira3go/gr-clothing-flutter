@@ -76,24 +76,25 @@ class _$VideoMessageCopyWithImpl<$Res> implements $VideoMessageCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$VideoMessageCopyWith<$Res>
+abstract class _$$_VideoMessageCopyWith<$Res>
     implements $VideoMessageCopyWith<$Res> {
-  factory _$VideoMessageCopyWith(
-          _VideoMessage value, $Res Function(_VideoMessage) then) =
-      __$VideoMessageCopyWithImpl<$Res>;
+  factory _$$_VideoMessageCopyWith(
+          _$_VideoMessage value, $Res Function(_$_VideoMessage) then) =
+      __$$_VideoMessageCopyWithImpl<$Res>;
   @override
   $Res call({String image, bool isFavorite, String artistName, String link});
 }
 
 /// @nodoc
-class __$VideoMessageCopyWithImpl<$Res> extends _$VideoMessageCopyWithImpl<$Res>
-    implements _$VideoMessageCopyWith<$Res> {
-  __$VideoMessageCopyWithImpl(
-      _VideoMessage _value, $Res Function(_VideoMessage) _then)
-      : super(_value, (v) => _then(v as _VideoMessage));
+class __$$_VideoMessageCopyWithImpl<$Res>
+    extends _$VideoMessageCopyWithImpl<$Res>
+    implements _$$_VideoMessageCopyWith<$Res> {
+  __$$_VideoMessageCopyWithImpl(
+      _$_VideoMessage _value, $Res Function(_$_VideoMessage) _then)
+      : super(_value, (v) => _then(v as _$_VideoMessage));
 
   @override
-  _VideoMessage get _value => super._value as _VideoMessage;
+  _$_VideoMessage get _value => super._value as _$_VideoMessage;
 
   @override
   $Res call({
@@ -102,7 +103,7 @@ class __$VideoMessageCopyWithImpl<$Res> extends _$VideoMessageCopyWithImpl<$Res>
     Object? artistName = freezed,
     Object? link = freezed,
   }) {
-    return _then(_VideoMessage(
+    return _then(_$_VideoMessage(
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -153,7 +154,7 @@ class _$_VideoMessage implements _VideoMessage {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _VideoMessage &&
+            other is _$_VideoMessage &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality()
                 .equals(other.isFavorite, isFavorite) &&
@@ -173,8 +174,8 @@ class _$_VideoMessage implements _VideoMessage {
 
   @JsonKey(ignore: true)
   @override
-  _$VideoMessageCopyWith<_VideoMessage> get copyWith =>
-      __$VideoMessageCopyWithImpl<_VideoMessage>(this, _$identity);
+  _$$_VideoMessageCopyWith<_$_VideoMessage> get copyWith =>
+      __$$_VideoMessageCopyWithImpl<_$_VideoMessage>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -202,6 +203,6 @@ abstract class _VideoMessage implements VideoMessage {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$VideoMessageCopyWith<_VideoMessage> get copyWith =>
+  _$$_VideoMessageCopyWith<_$_VideoMessage> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -75,22 +75,23 @@ class _$InterviewCopyWithImpl<$Res> implements $InterviewCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InterviewCopyWith<$Res> implements $InterviewCopyWith<$Res> {
-  factory _$InterviewCopyWith(
-          _Interview value, $Res Function(_Interview) then) =
-      __$InterviewCopyWithImpl<$Res>;
+abstract class _$$_InterviewCopyWith<$Res> implements $InterviewCopyWith<$Res> {
+  factory _$$_InterviewCopyWith(
+          _$_Interview value, $Res Function(_$_Interview) then) =
+      __$$_InterviewCopyWithImpl<$Res>;
   @override
   $Res call({String image, bool isFavorite, String title, String link});
 }
 
 /// @nodoc
-class __$InterviewCopyWithImpl<$Res> extends _$InterviewCopyWithImpl<$Res>
-    implements _$InterviewCopyWith<$Res> {
-  __$InterviewCopyWithImpl(_Interview _value, $Res Function(_Interview) _then)
-      : super(_value, (v) => _then(v as _Interview));
+class __$$_InterviewCopyWithImpl<$Res> extends _$InterviewCopyWithImpl<$Res>
+    implements _$$_InterviewCopyWith<$Res> {
+  __$$_InterviewCopyWithImpl(
+      _$_Interview _value, $Res Function(_$_Interview) _then)
+      : super(_value, (v) => _then(v as _$_Interview));
 
   @override
-  _Interview get _value => super._value as _Interview;
+  _$_Interview get _value => super._value as _$_Interview;
 
   @override
   $Res call({
@@ -99,7 +100,7 @@ class __$InterviewCopyWithImpl<$Res> extends _$InterviewCopyWithImpl<$Res>
     Object? title = freezed,
     Object? link = freezed,
   }) {
-    return _then(_Interview(
+    return _then(_$_Interview(
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -150,7 +151,7 @@ class _$_Interview implements _Interview {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Interview &&
+            other is _$_Interview &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality()
                 .equals(other.isFavorite, isFavorite) &&
@@ -169,8 +170,8 @@ class _$_Interview implements _Interview {
 
   @JsonKey(ignore: true)
   @override
-  _$InterviewCopyWith<_Interview> get copyWith =>
-      __$InterviewCopyWithImpl<_Interview>(this, _$identity);
+  _$$_InterviewCopyWith<_$_Interview> get copyWith =>
+      __$$_InterviewCopyWithImpl<_$_Interview>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -198,6 +199,6 @@ abstract class _Interview implements Interview {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InterviewCopyWith<_Interview> get copyWith =>
+  _$$_InterviewCopyWith<_$_Interview> get copyWith =>
       throw _privateConstructorUsedError;
 }

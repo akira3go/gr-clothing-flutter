@@ -70,24 +70,24 @@ class _$RankingItemCopyWithImpl<$Res> implements $RankingItemCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$RankingItemCopyWith<$Res>
+abstract class _$$_RankingItemCopyWith<$Res>
     implements $RankingItemCopyWith<$Res> {
-  factory _$RankingItemCopyWith(
-          _RankingItem value, $Res Function(_RankingItem) then) =
-      __$RankingItemCopyWithImpl<$Res>;
+  factory _$$_RankingItemCopyWith(
+          _$_RankingItem value, $Res Function(_$_RankingItem) then) =
+      __$$_RankingItemCopyWithImpl<$Res>;
   @override
   $Res call({String body, bool isFavorite, String link});
 }
 
 /// @nodoc
-class __$RankingItemCopyWithImpl<$Res> extends _$RankingItemCopyWithImpl<$Res>
-    implements _$RankingItemCopyWith<$Res> {
-  __$RankingItemCopyWithImpl(
-      _RankingItem _value, $Res Function(_RankingItem) _then)
-      : super(_value, (v) => _then(v as _RankingItem));
+class __$$_RankingItemCopyWithImpl<$Res> extends _$RankingItemCopyWithImpl<$Res>
+    implements _$$_RankingItemCopyWith<$Res> {
+  __$$_RankingItemCopyWithImpl(
+      _$_RankingItem _value, $Res Function(_$_RankingItem) _then)
+      : super(_value, (v) => _then(v as _$_RankingItem));
 
   @override
-  _RankingItem get _value => super._value as _RankingItem;
+  _$_RankingItem get _value => super._value as _$_RankingItem;
 
   @override
   $Res call({
@@ -95,7 +95,7 @@ class __$RankingItemCopyWithImpl<$Res> extends _$RankingItemCopyWithImpl<$Res>
     Object? isFavorite = freezed,
     Object? link = freezed,
   }) {
-    return _then(_RankingItem(
+    return _then(_$_RankingItem(
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
@@ -137,7 +137,7 @@ class _$_RankingItem implements _RankingItem {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _RankingItem &&
+            other is _$_RankingItem &&
             const DeepCollectionEquality().equals(other.body, body) &&
             const DeepCollectionEquality()
                 .equals(other.isFavorite, isFavorite) &&
@@ -154,8 +154,8 @@ class _$_RankingItem implements _RankingItem {
 
   @JsonKey(ignore: true)
   @override
-  _$RankingItemCopyWith<_RankingItem> get copyWith =>
-      __$RankingItemCopyWithImpl<_RankingItem>(this, _$identity);
+  _$$_RankingItemCopyWith<_$_RankingItem> get copyWith =>
+      __$$_RankingItemCopyWithImpl<_$_RankingItem>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -180,6 +180,6 @@ abstract class _RankingItem implements RankingItem {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$RankingItemCopyWith<_RankingItem> get copyWith =>
+  _$$_RankingItemCopyWith<_$_RankingItem> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -88,11 +88,11 @@ class _$DiscReviewItemCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DiscReviewItemCopyWith<$Res>
+abstract class _$$_DiscReviewItemCopyWith<$Res>
     implements $DiscReviewItemCopyWith<$Res> {
-  factory _$DiscReviewItemCopyWith(
-          _DiscReviewItem value, $Res Function(_DiscReviewItem) then) =
-      __$DiscReviewItemCopyWithImpl<$Res>;
+  factory _$$_DiscReviewItemCopyWith(
+          _$_DiscReviewItem value, $Res Function(_$_DiscReviewItem) then) =
+      __$$_DiscReviewItemCopyWithImpl<$Res>;
   @override
   $Res call(
       {String image,
@@ -103,15 +103,15 @@ abstract class _$DiscReviewItemCopyWith<$Res>
 }
 
 /// @nodoc
-class __$DiscReviewItemCopyWithImpl<$Res>
+class __$$_DiscReviewItemCopyWithImpl<$Res>
     extends _$DiscReviewItemCopyWithImpl<$Res>
-    implements _$DiscReviewItemCopyWith<$Res> {
-  __$DiscReviewItemCopyWithImpl(
-      _DiscReviewItem _value, $Res Function(_DiscReviewItem) _then)
-      : super(_value, (v) => _then(v as _DiscReviewItem));
+    implements _$$_DiscReviewItemCopyWith<$Res> {
+  __$$_DiscReviewItemCopyWithImpl(
+      _$_DiscReviewItem _value, $Res Function(_$_DiscReviewItem) _then)
+      : super(_value, (v) => _then(v as _$_DiscReviewItem));
 
   @override
-  _DiscReviewItem get _value => super._value as _DiscReviewItem;
+  _$_DiscReviewItem get _value => super._value as _$_DiscReviewItem;
 
   @override
   $Res call({
@@ -121,7 +121,7 @@ class __$DiscReviewItemCopyWithImpl<$Res>
     Object? name = freezed,
     Object? link = freezed,
   }) {
-    return _then(_DiscReviewItem(
+    return _then(_$_DiscReviewItem(
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -179,7 +179,7 @@ class _$_DiscReviewItem implements _DiscReviewItem {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DiscReviewItem &&
+            other is _$_DiscReviewItem &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality()
                 .equals(other.artistName, artistName) &&
@@ -201,8 +201,8 @@ class _$_DiscReviewItem implements _DiscReviewItem {
 
   @JsonKey(ignore: true)
   @override
-  _$DiscReviewItemCopyWith<_DiscReviewItem> get copyWith =>
-      __$DiscReviewItemCopyWithImpl<_DiscReviewItem>(this, _$identity);
+  _$$_DiscReviewItemCopyWith<_$_DiscReviewItem> get copyWith =>
+      __$$_DiscReviewItemCopyWithImpl<_$_DiscReviewItem>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -233,6 +233,6 @@ abstract class _DiscReviewItem implements DiscReviewItem {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DiscReviewItemCopyWith<_DiscReviewItem> get copyWith =>
+  _$$_DiscReviewItemCopyWith<_$_DiscReviewItem> get copyWith =>
       throw _privateConstructorUsedError;
 }

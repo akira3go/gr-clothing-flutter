@@ -94,10 +94,11 @@ class _$MusicVideoCopyWithImpl<$Res> implements $MusicVideoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$MusicVideoCopyWith<$Res> implements $MusicVideoCopyWith<$Res> {
-  factory _$MusicVideoCopyWith(
-          _MusicVideo value, $Res Function(_MusicVideo) then) =
-      __$MusicVideoCopyWithImpl<$Res>;
+abstract class _$$_MusicVideoCopyWith<$Res>
+    implements $MusicVideoCopyWith<$Res> {
+  factory _$$_MusicVideoCopyWith(
+          _$_MusicVideo value, $Res Function(_$_MusicVideo) then) =
+      __$$_MusicVideoCopyWithImpl<$Res>;
   @override
   $Res call(
       {String image,
@@ -109,14 +110,14 @@ abstract class _$MusicVideoCopyWith<$Res> implements $MusicVideoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$MusicVideoCopyWithImpl<$Res> extends _$MusicVideoCopyWithImpl<$Res>
-    implements _$MusicVideoCopyWith<$Res> {
-  __$MusicVideoCopyWithImpl(
-      _MusicVideo _value, $Res Function(_MusicVideo) _then)
-      : super(_value, (v) => _then(v as _MusicVideo));
+class __$$_MusicVideoCopyWithImpl<$Res> extends _$MusicVideoCopyWithImpl<$Res>
+    implements _$$_MusicVideoCopyWith<$Res> {
+  __$$_MusicVideoCopyWithImpl(
+      _$_MusicVideo _value, $Res Function(_$_MusicVideo) _then)
+      : super(_value, (v) => _then(v as _$_MusicVideo));
 
   @override
-  _MusicVideo get _value => super._value as _MusicVideo;
+  _$_MusicVideo get _value => super._value as _$_MusicVideo;
 
   @override
   $Res call({
@@ -127,7 +128,7 @@ class __$MusicVideoCopyWithImpl<$Res> extends _$MusicVideoCopyWithImpl<$Res>
     Object? playCount = freezed,
     Object? link = freezed,
   }) {
-    return _then(_MusicVideo(
+    return _then(_$_MusicVideo(
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -192,7 +193,7 @@ class _$_MusicVideo implements _MusicVideo {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MusicVideo &&
+            other is _$_MusicVideo &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality()
                 .equals(other.isFavorite, isFavorite) &&
@@ -216,8 +217,8 @@ class _$_MusicVideo implements _MusicVideo {
 
   @JsonKey(ignore: true)
   @override
-  _$MusicVideoCopyWith<_MusicVideo> get copyWith =>
-      __$MusicVideoCopyWithImpl<_MusicVideo>(this, _$identity);
+  _$$_MusicVideoCopyWith<_$_MusicVideo> get copyWith =>
+      __$$_MusicVideoCopyWithImpl<_$_MusicVideo>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -251,6 +252,6 @@ abstract class _MusicVideo implements MusicVideo {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MusicVideoCopyWith<_MusicVideo> get copyWith =>
+  _$$_MusicVideoCopyWith<_$_MusicVideo> get copyWith =>
       throw _privateConstructorUsedError;
 }

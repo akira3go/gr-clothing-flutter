@@ -101,9 +101,9 @@ class _$NewsCopyWithImpl<$Res> implements $NewsCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$NewsCopyWith<$Res> implements $NewsCopyWith<$Res> {
-  factory _$NewsCopyWith(_News value, $Res Function(_News) then) =
-      __$NewsCopyWithImpl<$Res>;
+abstract class _$$_NewsCopyWith<$Res> implements $NewsCopyWith<$Res> {
+  factory _$$_NewsCopyWith(_$_News value, $Res Function(_$_News) then) =
+      __$$_NewsCopyWithImpl<$Res>;
   @override
   $Res call(
       {String image,
@@ -116,13 +116,13 @@ abstract class _$NewsCopyWith<$Res> implements $NewsCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$NewsCopyWithImpl<$Res> extends _$NewsCopyWithImpl<$Res>
-    implements _$NewsCopyWith<$Res> {
-  __$NewsCopyWithImpl(_News _value, $Res Function(_News) _then)
-      : super(_value, (v) => _then(v as _News));
+class __$$_NewsCopyWithImpl<$Res> extends _$NewsCopyWithImpl<$Res>
+    implements _$$_NewsCopyWith<$Res> {
+  __$$_NewsCopyWithImpl(_$_News _value, $Res Function(_$_News) _then)
+      : super(_value, (v) => _then(v as _$_News));
 
   @override
-  _News get _value => super._value as _News;
+  _$_News get _value => super._value as _$_News;
 
   @override
   $Res call({
@@ -134,7 +134,7 @@ class __$NewsCopyWithImpl<$Res> extends _$NewsCopyWithImpl<$Res>
     Object? body = freezed,
     Object? link = freezed,
   }) {
-    return _then(_News(
+    return _then(_$_News(
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -207,7 +207,7 @@ class _$_News implements _News {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _News &&
+            other is _$_News &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.location, location) &&
@@ -232,8 +232,8 @@ class _$_News implements _News {
 
   @JsonKey(ignore: true)
   @override
-  _$NewsCopyWith<_News> get copyWith =>
-      __$NewsCopyWithImpl<_News>(this, _$identity);
+  _$$_NewsCopyWith<_$_News> get copyWith =>
+      __$$_NewsCopyWithImpl<_$_News>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -271,5 +271,5 @@ abstract class _News implements News {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$NewsCopyWith<_News> get copyWith => throw _privateConstructorUsedError;
+  _$$_NewsCopyWith<_$_News> get copyWith => throw _privateConstructorUsedError;
 }

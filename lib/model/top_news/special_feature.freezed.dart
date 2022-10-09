@@ -77,25 +77,25 @@ class _$SpecialFeatureCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SpecialFeatureCopyWith<$Res>
+abstract class _$$_SpecialFeatureCopyWith<$Res>
     implements $SpecialFeatureCopyWith<$Res> {
-  factory _$SpecialFeatureCopyWith(
-          _SpecialFeature value, $Res Function(_SpecialFeature) then) =
-      __$SpecialFeatureCopyWithImpl<$Res>;
+  factory _$$_SpecialFeatureCopyWith(
+          _$_SpecialFeature value, $Res Function(_$_SpecialFeature) then) =
+      __$$_SpecialFeatureCopyWithImpl<$Res>;
   @override
   $Res call({String image, bool isFavorite, String title, String link});
 }
 
 /// @nodoc
-class __$SpecialFeatureCopyWithImpl<$Res>
+class __$$_SpecialFeatureCopyWithImpl<$Res>
     extends _$SpecialFeatureCopyWithImpl<$Res>
-    implements _$SpecialFeatureCopyWith<$Res> {
-  __$SpecialFeatureCopyWithImpl(
-      _SpecialFeature _value, $Res Function(_SpecialFeature) _then)
-      : super(_value, (v) => _then(v as _SpecialFeature));
+    implements _$$_SpecialFeatureCopyWith<$Res> {
+  __$$_SpecialFeatureCopyWithImpl(
+      _$_SpecialFeature _value, $Res Function(_$_SpecialFeature) _then)
+      : super(_value, (v) => _then(v as _$_SpecialFeature));
 
   @override
-  _SpecialFeature get _value => super._value as _SpecialFeature;
+  _$_SpecialFeature get _value => super._value as _$_SpecialFeature;
 
   @override
   $Res call({
@@ -104,7 +104,7 @@ class __$SpecialFeatureCopyWithImpl<$Res>
     Object? title = freezed,
     Object? link = freezed,
   }) {
-    return _then(_SpecialFeature(
+    return _then(_$_SpecialFeature(
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -155,7 +155,7 @@ class _$_SpecialFeature implements _SpecialFeature {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SpecialFeature &&
+            other is _$_SpecialFeature &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality()
                 .equals(other.isFavorite, isFavorite) &&
@@ -174,8 +174,8 @@ class _$_SpecialFeature implements _SpecialFeature {
 
   @JsonKey(ignore: true)
   @override
-  _$SpecialFeatureCopyWith<_SpecialFeature> get copyWith =>
-      __$SpecialFeatureCopyWithImpl<_SpecialFeature>(this, _$identity);
+  _$$_SpecialFeatureCopyWith<_$_SpecialFeature> get copyWith =>
+      __$$_SpecialFeatureCopyWithImpl<_$_SpecialFeature>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -203,6 +203,6 @@ abstract class _SpecialFeature implements SpecialFeature {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SpecialFeatureCopyWith<_SpecialFeature> get copyWith =>
+  _$$_SpecialFeatureCopyWith<_$_SpecialFeature> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -76,24 +76,25 @@ class _$ArtistColumnCopyWithImpl<$Res> implements $ArtistColumnCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$ArtistColumnCopyWith<$Res>
+abstract class _$$_ArtistColumnCopyWith<$Res>
     implements $ArtistColumnCopyWith<$Res> {
-  factory _$ArtistColumnCopyWith(
-          _ArtistColumn value, $Res Function(_ArtistColumn) then) =
-      __$ArtistColumnCopyWithImpl<$Res>;
+  factory _$$_ArtistColumnCopyWith(
+          _$_ArtistColumn value, $Res Function(_$_ArtistColumn) then) =
+      __$$_ArtistColumnCopyWithImpl<$Res>;
   @override
   $Res call({String image, bool isFavorite, String body, String link});
 }
 
 /// @nodoc
-class __$ArtistColumnCopyWithImpl<$Res> extends _$ArtistColumnCopyWithImpl<$Res>
-    implements _$ArtistColumnCopyWith<$Res> {
-  __$ArtistColumnCopyWithImpl(
-      _ArtistColumn _value, $Res Function(_ArtistColumn) _then)
-      : super(_value, (v) => _then(v as _ArtistColumn));
+class __$$_ArtistColumnCopyWithImpl<$Res>
+    extends _$ArtistColumnCopyWithImpl<$Res>
+    implements _$$_ArtistColumnCopyWith<$Res> {
+  __$$_ArtistColumnCopyWithImpl(
+      _$_ArtistColumn _value, $Res Function(_$_ArtistColumn) _then)
+      : super(_value, (v) => _then(v as _$_ArtistColumn));
 
   @override
-  _ArtistColumn get _value => super._value as _ArtistColumn;
+  _$_ArtistColumn get _value => super._value as _$_ArtistColumn;
 
   @override
   $Res call({
@@ -102,7 +103,7 @@ class __$ArtistColumnCopyWithImpl<$Res> extends _$ArtistColumnCopyWithImpl<$Res>
     Object? body = freezed,
     Object? link = freezed,
   }) {
-    return _then(_ArtistColumn(
+    return _then(_$_ArtistColumn(
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -153,7 +154,7 @@ class _$_ArtistColumn implements _ArtistColumn {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ArtistColumn &&
+            other is _$_ArtistColumn &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality()
                 .equals(other.isFavorite, isFavorite) &&
@@ -172,8 +173,8 @@ class _$_ArtistColumn implements _ArtistColumn {
 
   @JsonKey(ignore: true)
   @override
-  _$ArtistColumnCopyWith<_ArtistColumn> get copyWith =>
-      __$ArtistColumnCopyWithImpl<_ArtistColumn>(this, _$identity);
+  _$$_ArtistColumnCopyWith<_$_ArtistColumn> get copyWith =>
+      __$$_ArtistColumnCopyWithImpl<_$_ArtistColumn>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -201,6 +202,6 @@ abstract class _ArtistColumn implements ArtistColumn {
   String get link => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ArtistColumnCopyWith<_ArtistColumn> get copyWith =>
+  _$$_ArtistColumnCopyWith<_$_ArtistColumn> get copyWith =>
       throw _privateConstructorUsedError;
 }
