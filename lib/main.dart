@@ -1,54 +1,153 @@
-import 'package:flutter/foundation.dart';
+import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
-import 'package:gr_clothing_flutter/pages/main_tab/main_tab_page.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:gr_clothing_flutter/pages/webview/webview_page.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+final webviewUrlProvider = StateProvider<String>((ref) {
+  return 'https://shop.gekirock.com/';
+});
+final webviewToggleProvider = StateProvider<bool>((ref) {
+  return true;
+});
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const ProviderScope(child: GRClothingApp()));
 }
 
-class GRClothingApp extends StatelessWidget {
+class GRClothingApp extends ConsumerWidget {
   const GRClothingApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: FontFamily.hiragino,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: ColorName.skyBlue,
-          shadowColor: Colors.transparent,
-          elevation: 0.0,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            systemNavigationBarIconBrightness: Brightness.light,
-            statusBarIconBrightness: Brightness.light,
-          ),
-        ),
-        buttonTheme: const ButtonThemeData(
-          padding: EdgeInsets.zero
-        ),
-      ),
-      home: _homeWidget(),
-      // hidden the debug label.
-      debugShowCheckedModeBanner: false,
+  Widget build(BuildContext context, WidgetRef ref) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    final messaging = FirebaseMessaging.instance;
+    // 通知タップでアプリ起動したら
+    messaging.getInitialMessage().then((message) {
+      ref.read(webviewToggleProvider.notifier).state =
+          !ref.read(webviewToggleProvider);
+      final link = message?.data["link"] as String? ?? "";
+      if (link.isNotEmpty) {
+        ref.read(webviewUrlProvider.notifier).state = link;
+      }
+    });
+    messaging.requestPermission(
+      alert: true,
+      announcement: true,
+      badge: true,
+      carPlay: true,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
     );
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      ref.read(webviewToggleProvider.notifier).state =
+          !ref.read(webviewToggleProvider);
+      ref.read(webviewUrlProvider.notifier).state =
+          message.data["link"] as String;
+    });
+
+    if (Platform.isAndroid) {
+      var androidSetting = const AndroidInitializationSettings('app_icon');
+      final settings = InitializationSettings(android: androidSetting);
+      flutterLocalNotificationsPlugin.initialize(
+        settings,
+        onDidReceiveNotificationResponse: (res) {
+          if (res.payload != null) {
+            ref.read(webviewToggleProvider.notifier).state =
+            !ref.read(webviewToggleProvider);
+            ref.read(webviewUrlProvider.notifier).state = res.payload!;
+          }
+        },
+      );
+      flutterLocalNotificationsPlugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.requestPermission();
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        print("フォアグラウンドでメッセージを受け取りました");
+        RemoteNotification? notification = message.notification;
+        AndroidNotification? android = message.notification?.android;
+        if (notification != null && android != null) {
+          // フォアグラウンドで通知を受け取った場合、通知を作成して表示する
+          flutterLocalNotificationsPlugin.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            const NotificationDetails(
+              // 通知channelを設定する
+              android: AndroidNotificationDetails(
+                'like_channel', // channelId
+                'GEKIROCK CLOTHING', // channelName
+                importance: Importance.max,
+                priority: Priority.high,
+                icon: 'launch_background',
+              ),
+            ),
+            payload: message.data["link"] as String
+          );
+        }
+      });
+    } else {
+      messaging.setForegroundNotificationPresentationOptions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+    }
+
+    return Consumer(builder: (_, widgetRef, __) {
+      return MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          fontFamily: FontFamily.hiragino,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: ColorName.skyBlue,
+            shadowColor: Colors.transparent,
+            elevation: 0.0,
+            systemOverlayStyle: SystemUiOverlayStyle(
+              systemNavigationBarIconBrightness: Brightness.light,
+              statusBarIconBrightness: Brightness.light,
+            ),
+          ),
+          buttonTheme: const ButtonThemeData(padding: EdgeInsets.zero),
+        ),
+        home: _homeWidget(widgetRef),
+        debugShowCheckedModeBanner: false,
+      );
+    });
   }
 
-  Widget _homeWidget() {
-    if (kDebugMode) {
-      return const Banner(
-        message: "GekiClothing",
-        location: BannerLocation.topStart,
-        child: WebviewPage(initialUrl: 'https://shop.gekirock.com/',),
-      );
-    } else {
-      return const WebviewPage(initialUrl: 'https://shop.gekirock.com/',);
-    }
+  Widget _homeWidget(WidgetRef ref) {
+    return FutureBuilder(
+      future: FirebaseMessaging.instance.getToken(),
+      builder: (_, AsyncSnapshot<String?> snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        final url =
+            "${ref.watch(webviewUrlProvider)}?token=${snapshot.data ?? ""}";
+        if (ref.read(webviewToggleProvider)) {
+          return WebviewPage(
+            initialUrl: url,
+          );
+        } else {
+          return Container(
+              child: WebviewPage(
+            initialUrl: url,
+          ));
+        }
+      },
+    );
   }
 }

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "180854038120",
+    "project_id": "gekirock-clothing",
+    "storage_bucket": "gekirock-clothing.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180854038120:android:6cf9bac8f0fb9d79d8e5dd",
+        "android_client_info": {
+          "package_name": "com.gekirock.app.clothing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180854038120-dgc9gmh2dkdjo30p2ekhn810n2dju9bp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAVq8yzXbf0Jovq6h4Lq4iJ8pdpM7nei0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180854038120-dgc9gmh2dkdjo30p2ekhn810n2dju9bp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "180854038120-2mpciqm4eaqlmc9trhk81m0a3343jiv3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.grClothingFlutter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

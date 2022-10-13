@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class WebviewPage extends ConsumerWidget {
+class WebviewPage extends StatelessWidget {
   const WebviewPage({Key? key, required this.initialUrl}) : super(key: key);
 
   final String initialUrl;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorName.skyBlue,
       appBar: AppBar(
         toolbarHeight: 0,
       ),
@@ -29,7 +29,7 @@ class WebviewPage extends ConsumerWidget {
       //   ],
       // ),
       body: WebView(
-        backgroundColor: Colors.white,
+        backgroundColor: ColorName.skyBlue,
         initialUrl: initialUrl,
         javascriptMode: JavascriptMode.unrestricted,
       ),

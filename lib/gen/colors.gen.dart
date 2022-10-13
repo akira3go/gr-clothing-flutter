@@ -34,8 +34,8 @@ class ColorName {
   /// Color: #FF8A65
   static const Color peoples = Color(0xFFFF8A65);
 
-  /// Color: #3EBDE0
-  static const Color skyBlue = Color(0xFF3EBDE0);
+  /// Color: #3FBDE0
+  static const Color skyBlue = Color(0xFF3FBDE0);
 
   /// Color: #249DBC
   static const Color skyDeepBlue = Color(0xFF249DBC);
