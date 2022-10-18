@@ -7,7 +7,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
-import 'package:gr_clothing_flutter/pages/webview/webview_page.dart';
+import 'package:gr_clothing_flutter/pages/webview_page.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -20,6 +20,9 @@ final webviewToggleProvider = StateProvider<bool>((ref) {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   await Firebase.initializeApp();
   runApp(const ProviderScope(child: GRClothingApp()));
 }
