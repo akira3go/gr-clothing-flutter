@@ -23,20 +23,6 @@ class WebviewPage extends StatelessWidget {
         appBar: AppBar(
           toolbarHeight: 0,
         ),
-        //   shape: const Border(bottom: BorderSide(color: ColorName.peoples, width: 1)),
-        //   actions: [
-        //     IconButton(
-        //       onPressed: () {},
-        //       icon: const Icon(Icons.notifications, color: ColorName.peoples),
-        //       iconSize: 40,
-        //     ),
-        //     IconButton(
-        //       onPressed: () {},
-        //       icon: const Icon(Icons.menu_book, color: ColorName.peoples),
-        //       iconSize: 40,
-        //     ),
-        //   ],
-        // ),
         body: WebView(
           userAgent: "GEKIROCK_CLOTHING_FLUTTER_APPLICATION",
           backgroundColor: ColorName.skyBlue,

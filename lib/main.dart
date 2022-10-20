@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gr_clothing_flutter/firebase_options.dart';
 import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:gr_clothing_flutter/pages/webview_page.dart';
@@ -23,7 +24,9 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ProviderScope(child: GRClothingApp()));
 }
 
@@ -57,18 +60,18 @@ class GRClothingApp extends ConsumerWidget {
       ref.read(webviewToggleProvider.notifier).state =
           !ref.read(webviewToggleProvider);
       ref.read(webviewUrlProvider.notifier).state =
-          message.data["link"] as String;
+          message.data["link"] as String? ?? "";
     });
 
     if (Platform.isAndroid) {
-      var androidSetting = const AndroidInitializationSettings('app_icon');
+      var androidSetting = const AndroidInitializationSettings('@mipmap/ic_launcher');
       final settings = InitializationSettings(android: androidSetting);
       flutterLocalNotificationsPlugin.initialize(
         settings,
         onDidReceiveNotificationResponse: (res) {
           if (res.payload != null) {
             ref.read(webviewToggleProvider.notifier).state =
-            !ref.read(webviewToggleProvider);
+                !ref.read(webviewToggleProvider);
             ref.read(webviewUrlProvider.notifier).state = res.payload!;
           }
         },
@@ -97,7 +100,7 @@ class GRClothingApp extends ConsumerWidget {
                 icon: 'launch_background',
               ),
             ),
-            payload: message.data["link"] as String
+            payload: message.data["link"] as String?,
           );
         }
       });
@@ -138,6 +141,8 @@ class GRClothingApp extends ConsumerWidget {
         if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
         }
+        print("token");
+        print(snapshot.data ?? "");
         final url =
             "${ref.watch(webviewUrlProvider)}?token=${snapshot.data ?? ""}";
         if (ref.read(webviewToggleProvider)) {
