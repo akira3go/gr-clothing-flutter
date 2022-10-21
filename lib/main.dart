@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gr_clothing_flutter/const.dart';
 import 'package:gr_clothing_flutter/firebase_options.dart';
 import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
@@ -13,7 +14,7 @@ import 'package:gr_clothing_flutter/pages/webview_page.dart';
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 final webviewUrlProvider = StateProvider<String>((ref) {
-  return 'https://shop.gekirock.com/';
+  return Const.initialUrl;
 });
 final webviewToggleProvider = StateProvider<bool>((ref) {
   return true;

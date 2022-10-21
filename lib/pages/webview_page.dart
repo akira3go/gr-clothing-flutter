@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:gr_clothing_flutter/const.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -26,15 +27,15 @@ class WebviewPage extends StatelessWidget {
           toolbarHeight: 0,
         ),
         body: WebView(
-          userAgent: "GEKIROCK_CLOTHING_FLUTTER_APPLICATION",
+          userAgent: Const.userAgent,
           backgroundColor: ColorName.skyBlue,
           javascriptMode: JavascriptMode.unrestricted,
           navigationDelegate: (request) async {
-            if (request.url == "https://shop.gekirock.com/") {
+            if (request.url == Const.initialUrl) {
               controller!.loadUrl(
                 initialUrl,
                 headers: {
-                  "x-api-key": "k2UPNGT4",
+                  "x-api-key": Const.xApiKey,
                 },
               );
               return NavigationDecision.prevent;
@@ -53,7 +54,7 @@ class WebviewPage extends StatelessWidget {
             controller.loadUrl(
               initialUrl,
               headers: {
-                "x-api-key": "k2UPNGT4",
+                "x-api-key": Const.xApiKey,
               },
             );
           },
@@ -112,13 +113,27 @@ class WebviewPage extends StatelessWidget {
     const rockFashion = "://rock-fashion.jugem.jp";
     const shopGekirock = "://shop.gekirock.com";
     const mobileTwitter = "://mobile.twitter.com";
+    // 下記はトップ画面読み込み時にロードしてしまうurl
+    const platformTwitter = "://platform.twitter.com";
+    const wwwFacebook = "://www.facebook.com";
+    const syndication = "://syndication.twitter.com";
+    const aboutBlank = "about:blank";
 
-    return url.contains(gekirock) || url.contains(skream) ||
+    return url.contains(gekirock) ||
+        url.contains(skream) ||
         url.contains(tokyo) ||
-        url.contains(barRockaholic) || url.contains(liveholic) ||
-        url.contains(youtube) || url.contains(twitter) ||
-        url.contains(facebook) || url.contains(instagram) ||
-        url.contains(rockFashion) || url.contains(shopGekirock) ||
-        url.contains(mobileTwitter);
+        url.contains(barRockaholic) ||
+        url.contains(liveholic) ||
+        url.contains(youtube) ||
+        url.contains(twitter) ||
+        url.contains(facebook) ||
+        url.contains(instagram) ||
+        url.contains(rockFashion) ||
+        url.contains(shopGekirock) ||
+        url.contains(mobileTwitter) ||
+        url.contains(platformTwitter) ||
+        url.contains(wwwFacebook) ||
+        url.contains(syndication) ||
+        url.contains(aboutBlank);
   }
 }
