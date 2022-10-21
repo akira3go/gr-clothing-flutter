@@ -1,5 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gekirock.app.clothing">
+    <queries>
+        <!-- If your app opens https URLs -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
    <application
         android:label="GEKIROCK CLOTHING"
