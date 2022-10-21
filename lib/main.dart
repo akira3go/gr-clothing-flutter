@@ -59,8 +59,10 @@ class GRClothingApp extends ConsumerWidget {
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       ref.read(webviewToggleProvider.notifier).state =
           !ref.read(webviewToggleProvider);
-      ref.read(webviewUrlProvider.notifier).state =
-          message.data["link"] as String? ?? "";
+      final link = message.data["link"] as String? ?? "";
+      if (link.isNotEmpty) {
+        ref.read(webviewUrlProvider.notifier).state = link;
+      }
     });
 
     if (Platform.isAndroid) {
@@ -72,7 +74,9 @@ class GRClothingApp extends ConsumerWidget {
           if (res.payload != null) {
             ref.read(webviewToggleProvider.notifier).state =
                 !ref.read(webviewToggleProvider);
-            ref.read(webviewUrlProvider.notifier).state = res.payload!;
+            if (res.payload!.isNotEmpty) {
+              ref.read(webviewUrlProvider.notifier).state = res.payload!;
+            }
           }
         },
       );
