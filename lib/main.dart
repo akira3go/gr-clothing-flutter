@@ -9,7 +9,7 @@ import 'package:gr_clothing_flutter/const.dart';
 import 'package:gr_clothing_flutter/firebase_options.dart';
 import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
-import 'package:gr_clothing_flutter/pages/webview_page.dart';
+import 'package:gr_clothing_flutter/webview_page.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();

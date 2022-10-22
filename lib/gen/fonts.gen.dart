@@ -10,12 +10,6 @@
 class FontFamily {
   FontFamily._();
 
-  /// Font family: Bevan
-  static const String bevan = 'Bevan';
-
   /// Font family: Hiragino
   static const String hiragino = 'Hiragino';
-
-  /// Font family: Oswald
-  static const String oswald = 'Oswald';
 }
