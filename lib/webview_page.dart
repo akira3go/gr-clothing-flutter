@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:gr_clothing_flutter/const.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -119,6 +121,19 @@ class WebviewPage extends StatelessWidget {
       userAgent: Const.userAgent,
       backgroundColor: Colors.black,
       javascriptMode: JavascriptMode.unrestricted,
+      javascriptChannels: {
+        JavascriptChannel(
+          name: 'flutterAppGekirockClothing',
+          onMessageReceived: (JavascriptMessage message) async {
+            Map<String, dynamic> messageMap = json.decode(message.message);
+            final urlScheme = messageMap["url_scheme"] as String;
+            final url = messageMap["url"] as String;
+            if (!await launchUrlString(urlScheme)) {
+              await launchUrlString(url);
+            }
+          },
+        ),
+      },
       navigationDelegate: (request) async {
         if (request.url == Const.initialUrl) {
           reload();
