@@ -4,12 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/const.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class WebviewPage extends StatelessWidget {
@@ -18,6 +18,9 @@ class WebviewPage extends StatelessWidget {
   final String initialUrl;
   WebViewController? controller;
   final refreshController = RefreshController();
+  final backButtonVisible = StateProvider<bool>((ref) {
+    return false;
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,24 +37,37 @@ class WebviewPage extends StatelessWidget {
           toolbarHeight: 0,
         ),
         body: Platform.isIOS ? _iosWidget : _androidWidget,
-        floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
-        floatingActionButton: Platform.isIOS ? Opacity(
-          opacity: 0.7,
-          child: FloatingActionButton(
-            backgroundColor: ColorName.skyBlue,
-            onPressed: () async {
-              if (await controller?.canGoBack() ?? false) {
-                controller!.goBack();
-              }
-            },
-            child: const Icon(
-              Icons.arrow_back_ios_rounded,
-              size: 18,
-              color: Colors.white,
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.miniStartFloat,
+        floatingActionButton:
+            Platform.isIOS ? _iOSFloatingActionButton() : null,
+      ),
+    );
+  }
+
+  Widget _iOSFloatingActionButton() {
+    return Consumer(
+      builder: (_, ref, __) {
+        return Visibility(
+          visible: ref.watch(backButtonVisible),
+          child: Opacity(
+            opacity: 0.7,
+            child: FloatingActionButton(
+              backgroundColor: ColorName.skyBlue,
+              onPressed: () async {
+                if (await controller?.canGoBack() ?? false) {
+                  controller!.goBack();
+                }
+              },
+              child: const Icon(
+                Icons.arrow_back_ios_rounded,
+                size: 18,
+                color: Colors.white,
+              ),
             ),
           ),
-        ) : null,
-      ),
+        );
+      },
     );
   }
 
@@ -64,12 +80,12 @@ class WebviewPage extends StatelessWidget {
       controller: refreshController,
       header: Platform.isIOS
           ? CustomHeader(
-        builder: (_, __) {
-          return const CupertinoActivityIndicator(
-            color: Colors.white,
-          );
-        },
-      )
+              builder: (_, __) {
+                return const CupertinoActivityIndicator(
+                  color: Colors.white,
+                );
+              },
+            )
           : const MaterialClassicHeader(),
       child: _customWebView(),
     );
@@ -95,12 +111,12 @@ class WebviewPage extends StatelessWidget {
             controller: refreshController,
             header: Platform.isIOS
                 ? CustomHeader(
-              builder: (_, __) {
-                return const CupertinoActivityIndicator(
-                  color: Colors.white,
-                );
-              },
-            )
+                    builder: (_, __) {
+                      return const CupertinoActivityIndicator(
+                        color: Colors.white,
+                      );
+                    },
+                  )
                 : const MaterialClassicHeader(),
             child: Container(
               height: 0,
@@ -114,44 +130,55 @@ class WebviewPage extends StatelessWidget {
   Widget _customWebView() {
     final gesture = <Factory<AllowVerticalDragGestureRecognizer>>{};
     gesture.add(Factory<AllowVerticalDragGestureRecognizer>(
-          () => Platform.isIOS ? _iosGesture : _androidGesture,
+      () => Platform.isIOS ? _iosGesture : _androidGesture,
     ));
 
-    return WebView(
-      userAgent: Const.userAgent,
-      backgroundColor: Colors.black,
-      javascriptMode: JavascriptMode.unrestricted,
-      javascriptChannels: {
-        JavascriptChannel(
-          name: 'flutterAppGekirockClothing',
-          onMessageReceived: (JavascriptMessage message) async {
-            Map<String, dynamic> messageMap = json.decode(message.message);
-            final urlScheme = messageMap["url_scheme"] as String;
-            final url = messageMap["url"] as String;
-            if (!await launchUrlString(urlScheme)) {
-              await launchUrlString(url);
+    return Consumer(
+      builder: (_, ref, __) {
+        return WebView(
+          userAgent: Const.userAgent,
+          backgroundColor: Colors.black,
+          javascriptMode: JavascriptMode.unrestricted,
+          javascriptChannels: {
+            JavascriptChannel(
+              name: 'flutterAppGekirockClothing',
+              onMessageReceived: (JavascriptMessage message) async {
+                Map<String, dynamic> messageMap = json.decode(message.message);
+                final urlScheme = messageMap["url_scheme"] as String;
+                final url = messageMap["url"] as String;
+                if (!await launchUrlString(urlScheme)) {
+                  await launchUrlString(url,
+                      mode: LaunchMode.externalApplication);
+                }
+              },
+            ),
+          },
+          onPageFinished: (url) async {
+            final visible = await controller?.canGoBack();
+            if (visible != null) {
+              ref.read(backButtonVisible.notifier).state = visible;
             }
           },
-        ),
-      },
-      navigationDelegate: (request) async {
-        if (request.url == Const.initialUrl) {
-          reload();
-          return NavigationDecision.prevent;
-        }
-        if (_isCanNavigate(request.url)) {
-          return NavigationDecision.navigate;
-        }
-        final uri = Uri.parse(request.url);
-        if (await canLaunchUrl(uri)) {
-          launchUrl(uri);
-        }
-        return NavigationDecision.prevent;
-      },
-      gestureRecognizers: gesture,
-      onWebViewCreated: (controller) {
-        this.controller = controller;
-        reload();
+          navigationDelegate: (request) async {
+            if (request.url == Const.initialUrl) {
+              reload();
+              return NavigationDecision.prevent;
+            }
+            if (_isCanNavigate(request.url)) {
+              return NavigationDecision.navigate;
+            }
+            if (await canLaunchUrlString(request.url)) {
+              launchUrlString(request.url,
+                  mode: LaunchMode.externalApplication);
+            }
+            return NavigationDecision.prevent;
+          },
+          gestureRecognizers: gesture,
+          onWebViewCreated: (controller) {
+            this.controller = controller;
+            reload();
+          },
+        );
       },
     );
   }
@@ -161,7 +188,7 @@ class WebviewPage extends StatelessWidget {
     bool refreshFlag = false;
     gesture.onDown = (_) {
       controller!.getScrollY().then(
-            (value) {
+        (value) {
           if (value == 0) {
             refreshFlag = true;
           }
@@ -186,7 +213,7 @@ class WebviewPage extends StatelessWidget {
     bool refreshFlag = false;
     gesture.onStart = (startDetails) {
       controller!.getScrollY().then(
-            (value) {
+        (value) {
           if (value == 0) {
             refreshFlag = true;
           }
