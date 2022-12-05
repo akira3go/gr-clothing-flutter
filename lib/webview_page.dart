@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/const.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:gr_clothing_flutter/preferences.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -164,7 +165,7 @@ class WebviewPage extends StatelessWidget {
               reload();
               return NavigationDecision.prevent;
             }
-            if (_isCanNavigate(request.url)) {
+            if (_canNavigate(request.url)) {
               return NavigationDecision.navigate;
             }
             if (await canLaunchUrlString(request.url)) {
@@ -245,43 +246,15 @@ class WebviewPage extends StatelessWidget {
     );
   }
 
-  bool _isCanNavigate(String url) {
-    const gekirock = "gekirock.com";
-    const skream = "skream.jp";
-    const tokyo = "69hf.tokyo";
-    const barRockaholic = "bar-rockaholic.jp";
-    const liveholic = "liveholic.jp";
-    const youtube = "youtube.com";
-    const twitter = "twitter.com";
-    const facebook = "facebook.com";
-    const instagram = "instagram.com";
-    const rockFashion = "rock-fashion.jugem.jp";
-    const shopGekirock = "shop.gekirock.com";
-    const mobileTwitter = "mobile.twitter.com";
-    // 下記はトップ画面読み込み時にロードしてしまうurl
-    const platformTwitter = "platform.twitter.com";
-    const wwwFacebook = "www.facebook.com";
-    const webFacebook = "web.facebook.com";
-    const syndication = "syndication.twitter.com";
-    const aboutBlank = "about:blank";
-
-    return url.contains(gekirock) ||
-        url.contains(skream) ||
-        url.contains(tokyo) ||
-        url.contains(barRockaholic) ||
-        url.contains(liveholic) ||
-        url.contains(youtube) ||
-        url.contains(twitter) ||
-        url.contains(facebook) ||
-        url.contains(instagram) ||
-        url.contains(rockFashion) ||
-        url.contains(shopGekirock) ||
-        url.contains(mobileTwitter) ||
-        url.contains(platformTwitter) ||
-        url.contains(wwwFacebook) ||
-        url.contains(webFacebook) ||
-        url.contains(syndication) ||
-        url.contains(aboutBlank);
+  bool _canNavigate(String url) {
+    bool isAccept = false;
+    for (var element in preferences.acceptUrlPaths) {
+      if (url.contains("://$element")) {
+        isAccept = true;
+        break;
+      }
+    }
+    return isAccept;
   }
 }
 

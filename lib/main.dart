@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gr_clothing_flutter/accept_url_model.dart';
 import 'package:gr_clothing_flutter/const.dart';
 import 'package:gr_clothing_flutter/firebase_options.dart';
 import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:gr_clothing_flutter/preferences.dart';
 import 'package:gr_clothing_flutter/webview_page.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -28,11 +30,25 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Preferences.createInstance();
+  AcceptUrlsModel.fetchAcceptUrls();
   runApp(const ProviderScope(child: GRClothingApp()));
 }
 
-class GRClothingApp extends ConsumerWidget {
+class GRClothingApp extends ConsumerWidget with WidgetsBindingObserver {
   const GRClothingApp({Key? key}) : super(key: key);
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        AcceptUrlsModel.fetchAcceptUrls();
+        break;
+      default:
+        break;
+    }
+  }
 
   // This widget is the root of your application.
   @override
