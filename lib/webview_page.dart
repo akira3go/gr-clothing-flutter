@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -7,13 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gr_clothing_flutter/const.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
+import 'package:gr_clothing_flutter/main.dart';
 import 'package:gr_clothing_flutter/preferences.dart';
+import 'package:gr_clothing_flutter/webview_state.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 // ignore: must_be_immutable
-class WebviewPage extends StatelessWidget {
+class WebviewPage extends ConsumerWidget {
   WebviewPage({Key? key, required this.initialUrl}) : super(key: key);
 
   final String initialUrl;
@@ -24,7 +27,15 @@ class WebviewPage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen<WebViewState>(webviewStateProvider, (previous, next) async {
+      final token = await FirebaseMessaging.instance.getToken();
+      String url = "${next.url}?token=$token";
+      if (next.fragment != null) {
+        url += "#${next.fragment}";
+      }
+      reload(url);
+    });
     return WillPopScope(
       onWillPop: () async {
         if (await controller?.canGoBack() ?? false) {
@@ -162,7 +173,7 @@ class WebviewPage extends StatelessWidget {
           },
           navigationDelegate: (request) async {
             if (request.url == Const.initialUrl) {
-              reload();
+              reload(initialUrl);
               return NavigationDecision.prevent;
             }
             if (_canNavigate(request.url)) {
@@ -177,7 +188,7 @@ class WebviewPage extends StatelessWidget {
           gestureRecognizers: gesture,
           onWebViewCreated: (controller) {
             this.controller = controller;
-            reload();
+            reload(initialUrl);
           },
         );
       },
@@ -237,9 +248,9 @@ class WebviewPage extends StatelessWidget {
     return gesture;
   }
 
-  void reload() {
+  void reload(String url) {
     controller!.loadUrl(
-      initialUrl,
+      url,
       headers: {
         "x-api-key": Const.xApiKey,
       },

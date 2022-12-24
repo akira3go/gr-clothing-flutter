@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -12,12 +13,11 @@ import 'package:gr_clothing_flutter/gen/fonts.gen.dart';
 import 'package:gr_clothing_flutter/gen/colors.gen.dart';
 import 'package:gr_clothing_flutter/preferences.dart';
 import 'package:gr_clothing_flutter/webview_page.dart';
+import 'package:gr_clothing_flutter/webview_state.dart';
+import 'package:uni_links/uni_links.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
-final webviewUrlProvider = StateProvider<String>((ref) {
-  return Const.initialUrl;
-});
 final webviewToggleProvider = StateProvider<bool>((ref) {
   return true;
 });
@@ -32,11 +32,13 @@ void main() async {
   );
   await Preferences.createInstance();
   AcceptUrlsModel.fetchAcceptUrls();
-  runApp(const ProviderScope(child: GRClothingApp()));
+  runApp(ProviderScope(child: GRClothingApp()));
 }
 
 class GRClothingApp extends ConsumerWidget with WidgetsBindingObserver {
-  const GRClothingApp({Key? key}) : super(key: key);
+  GRClothingApp({Key? key}) : super(key: key);
+
+  StreamSubscription? _sub;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -61,7 +63,7 @@ class GRClothingApp extends ConsumerWidget with WidgetsBindingObserver {
           !ref.read(webviewToggleProvider);
       final link = message?.data["link"] as String? ?? "";
       if (link.isNotEmpty) {
-        ref.read(webviewUrlProvider.notifier).state = link;
+        ref.read(webviewStateProvider.notifier).state = WebViewState(link);
       }
     });
     messaging.requestPermission(
@@ -78,12 +80,13 @@ class GRClothingApp extends ConsumerWidget with WidgetsBindingObserver {
           !ref.read(webviewToggleProvider);
       final link = message.data["link"] as String? ?? "";
       if (link.isNotEmpty) {
-        ref.read(webviewUrlProvider.notifier).state = link;
+        ref.read(webviewStateProvider.notifier).state = WebViewState(link);
       }
     });
 
     if (Platform.isAndroid) {
-      var androidSetting = const AndroidInitializationSettings('@mipmap/ic_launcher');
+      var androidSetting =
+          const AndroidInitializationSettings('@mipmap/ic_launcher');
       final settings = InitializationSettings(android: androidSetting);
       flutterLocalNotificationsPlugin.initialize(
         settings,
@@ -92,7 +95,8 @@ class GRClothingApp extends ConsumerWidget with WidgetsBindingObserver {
             ref.read(webviewToggleProvider.notifier).state =
                 !ref.read(webviewToggleProvider);
             if (res.payload!.isNotEmpty) {
-              ref.read(webviewUrlProvider.notifier).state = res.payload!;
+              ref.read(webviewStateProvider.notifier).state =
+                  WebViewState(res.payload!);
             }
           }
         },
@@ -133,6 +137,8 @@ class GRClothingApp extends ConsumerWidget with WidgetsBindingObserver {
       );
     }
 
+    _setLinkStreamListener(ref);
+
     return Consumer(builder: (_, widgetRef, __) {
       return MaterialApp(
         theme: ThemeData(
@@ -149,13 +155,13 @@ class GRClothingApp extends ConsumerWidget with WidgetsBindingObserver {
           ),
           buttonTheme: const ButtonThemeData(padding: EdgeInsets.zero),
         ),
-        home: _homeWidget(widgetRef),
+        home: _homeWidget,
         debugShowCheckedModeBanner: false,
       );
     });
   }
 
-  Widget _homeWidget(WidgetRef ref) {
+  Widget get _homeWidget {
     return FutureBuilder(
       future: FirebaseMessaging.instance.getToken(),
       builder: (_, AsyncSnapshot<String?> snapshot) {
@@ -164,19 +170,33 @@ class GRClothingApp extends ConsumerWidget with WidgetsBindingObserver {
         }
         print("token");
         print(snapshot.data ?? "");
-        final url =
-            "${ref.watch(webviewUrlProvider)}?token=${snapshot.data ?? ""}";
-        if (ref.read(webviewToggleProvider)) {
-          return WebviewPage(
-            initialUrl: url,
-          );
-        } else {
-          return Container(
-              child: WebviewPage(
-            initialUrl: url,
-          ));
-        }
+        return Consumer(
+          builder: (_, ref, __) {
+            final url =
+                "${ref.read(webviewStateProvider).url}?token=${snapshot.data ?? ""}";
+            return WebviewPage(initialUrl: url);
+          },
+        );
       },
     );
+  }
+
+  void _setLinkStreamListener(WidgetRef ref) {
+    _sub = linkStream.listen((link) {
+      if (link == null) return;
+      final Uri uri;
+      try {
+        uri = Uri.parse(link);
+      } catch (_) {
+        return;
+      }
+      final webViewUrl = uri.queryParameters['url'];
+      final fragment = uri.queryParameters['fragment'];
+      if (webViewUrl == null) return;
+      ref.read(webviewStateProvider.notifier).state = WebViewState(
+        webViewUrl,
+        fragment: fragment,
+      );
+    });
   }
 }
