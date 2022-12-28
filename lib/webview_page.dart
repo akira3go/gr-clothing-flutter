@@ -30,11 +30,17 @@ class WebviewPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen<WebViewState>(webviewStateProvider, (previous, next) async {
       final token = await FirebaseMessaging.instance.getToken();
-      String url = "${next.url}?token=$token";
-      if (next.fragment != null) {
-        url += "#${next.fragment}";
-      }
-      reload(url);
+      final uri = Uri.parse(next.url);
+      final queryParameters = Map.of(uri.queryParameters);
+      queryParameters["token"] = token ?? "";
+      // queryParameters.addAll({
+      //   "token": token ?? "",
+      // });
+      uri.replace(
+        queryParameters: queryParameters,
+        fragment: uri.fragment.isEmpty ? next.fragment : uri.fragment
+      );
+      reload(uri.toString());
     });
     return WillPopScope(
       onWillPop: () async {
